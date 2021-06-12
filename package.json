@@ -6,20 +6,26 @@
   "types": "dist/types.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/html": "^6.2.9",
     "@types/jest": "^26.0.23",
     "@types/node": "15.12",
     "babel-jest": "^27.0.2",
+    "babel-loader": "^8.2.2",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-twin": "^1.0.2",
     "babel-preset-solid": "^0.26.5",
     "jest": "^27.0.4",
-    "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
     "rollup": "^2.51.2",
     "rollup-plugin-babel": "^4.4.0",

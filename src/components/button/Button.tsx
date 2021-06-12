@@ -1,17 +1,17 @@
 import tw from 'twin.macro'
-import { styled, css } from 'utils/styled'
+import { styled, css } from '../../utils/styled'
 
-type Props = {
+export type ButtonProps = {
   type?: 'primary' | 'secondary'
   children: any
 }
 
-const StyledButton = styled('button')(({ type }: Props) => [
+const StyledButton = styled('button')(({ type }: ButtonProps) => [
   // Base styles
   tw`px-8 py-2 rounded focus:outline-none transform duration-75`,
 
   // Variant styles
-  tw`hocus:(scale-105 text-yellow-400)`,
+  tw`hover:(scale-105 text-yellow-400)`,
 
   // Type primary styles
   type === 'primary' && tw`bg-black text-white border-black`,
@@ -25,7 +25,7 @@ const StyledButton = styled('button')(({ type }: Props) => [
   ],
 ])
 
-export function Button({ type, children }: Props) {
+export function Button({ type, children }: ButtonProps) {
   return (
     <div>
       <StyledButton type={type}>{children}</StyledButton>
