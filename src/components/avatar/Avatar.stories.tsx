@@ -2,39 +2,35 @@ import { Avatar, AvatarProps } from './Avatar'
 
 const TypeTemplate: Story<AvatarProps> = (args) => <Avatar {...args}></Avatar>
 
+import imageFile from './static/image.svg'
+
 export const Primary = TypeTemplate.bind({})
 Primary.args = {
-  avatar_type: 'filled',
+  avatarType: 'filled',
   shape: 'rounded',
   color: 'primary',
-  image_type: 'avatar',
+  imageType: 'avatar',
 }
 
 export const Secondary = TypeTemplate.bind({})
 Secondary.args = {
-  avatar_type: 'outlined-shadow',
+  avatarType: 'outlined-shadow',
   shape: 'square',
-  color: 'teal',
-  image_type: 'letter',
+  color: 'secondary',
+  imageType: 'letter',
   letters: 'AS',
 }
 
 export const Tertiary = TypeTemplate.bind({})
 Tertiary.args = {
-  avatar_type: 'filled-shadow',
-  shape: 'square',
-  color: 'purple',
-  image_type: 'letter',
-  letters: 'S',
+  avatarType: 'outlined-shadow',
+  shape: 'circle',
+  color: 'teal',
+  imageType: 'image',
+  imagePath: imageFile,
 }
 
 export default {
   title: 'Avatar',
   component: Avatar,
-  argTypes: {
-    type: {
-      options: ['primary', 'secondary', 'tertiary'],
-      control: { type: 'select' },
-    },
-  },
 }
