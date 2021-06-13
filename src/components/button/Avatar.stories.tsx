@@ -1,10 +1,9 @@
-import { Avatar } from './Avatar'
+import { Avatar, AvatarProps } from './Avatar'
 
-const TypeTemplate: Story<any> = (args) => <Avatar {...args}></Avatar>
+const TypeTemplate: Story<AvatarProps> = (args) => <Avatar {...args}></Avatar>
 
 export const Primary = TypeTemplate.bind({})
 Primary.args = {
-  type: 'primary',
   avatar_type: 'filled',
   shape: 'rounded',
   color: 'primary',
@@ -12,8 +11,7 @@ Primary.args = {
 }
 
 export const Secondary = TypeTemplate.bind({})
-Primary.args = {
-  type: 'primary',
+Secondary.args = {
   avatar_type: 'outlined-shadow',
   shape: 'square',
   color: 'teal',
@@ -22,13 +20,12 @@ Primary.args = {
 }
 
 export const Tertiary = TypeTemplate.bind({})
-Primary.args = {
-  type: 'primary',
-  avatar_type: 'outlined-shadow',
+Tertiary.args = {
+  avatar_type: 'filled-shadow',
   shape: 'square',
-  color: 'teal',
-  image_type: 'image',
-  image_path: 'some image path',
+  color: 'purple',
+  image_type: 'letter',
+  letters: 'S',
 }
 
 export default {
@@ -36,7 +33,7 @@ export default {
   component: Avatar,
   argTypes: {
     type: {
-      options: ['primary', 'secondary'],
+      options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'select' },
     },
   },

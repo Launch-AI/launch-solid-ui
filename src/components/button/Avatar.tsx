@@ -1,8 +1,19 @@
 import AvatarIcon from './AvatarIcon'
+import tw from 'twin.macro'
+import { styled, css } from '../../utils/styled'
 
-export const Avatar = (props: any) => {
+export type AvatarProps = {
+  avatar_type?: string
+  shape?: string
+  color?: string
+  image_type?: string
+  image_path?: string
+  letters?: string
+}
+
+export const Avatar = (props: AvatarProps) => {
   let background_color = '#0099FF'
-  let border = ''
+  let border = '0px'
   let border_color = '#0099FF'
   let image_color = 'white'
   let shadow = false
@@ -30,28 +41,58 @@ export const Avatar = (props: any) => {
 
   return (
     <div
-      style={{
-        width: '5rem',
-        height: '5rem',
-        display: 'flex',
-        'justify-content': 'center',
-        'align-items': 'center',
-        'font-size': props.image_type == 'letter' ? '1.5rem' : '1rem',
-        'background-color': background_color,
-        'border-width': border,
-        'border-style': 'solid',
-        'border-color': border_color,
-        'border-radius': props.shape == 'square' ? '20px' : '50%',
-        color: image_color,
-        'box-shadow': shadow
-          ? '0px 2px 4px rgba(18, 17, 17, 0.04), 0px 8px 16px rgba(113, 112, 112, 0.16)'
-          : 'none',
-      }}
+    //   style={{
+    //     width: '5rem',
+    //     height: '5rem',
+    //     display: 'flex',
+    //     'justify-content': 'center',
+    //     'align-items': 'center',
+    //     'font-size': props.image_type == 'letter' ? '1.5rem' : '1rem',
+    //     'background-color': background_color,
+    //     'border-width': border,
+    //     'border-style': 'solid',
+    //     'border-color': border_color,
+    //     'border-radius': props.shape == 'square' ? '20px' : '50%',
+    //     color: image_color,
+    //     'box-shadow': shadow
+    //       ? '0px 2px 4px rgba(18, 17, 17, 0.04), 0px 8px 16px rgba(113, 112, 112, 0.16)'
+    //       : 'none',
+    //   }}
+    // >
+    //   {getImage(props, image_color)}
     >
-      {getImage(props, image_color)}
+      <StyledDiv
+        image_type={props.image_type}
+        background_color={background_color}
+        border={border}
+        border_color={border_color}
+        shape={props.shape}
+        image_color={image_color}
+        shadow={shadow}
+      />
     </div>
   )
 }
+
+const StyledDiv = styled('div')(
+  ({
+    image_type,
+    background_color,
+    border,
+    border_color,
+    shape,
+    image_color,
+    shadow,
+  }: any) => [
+    // Base styles
+    tw`w-20 h-20 flex justify-center items-center text-base border-solid rounded-full shadow-none`,
+    css`
+      background-color: ${background_color};
+      border-width: ${border};
+      border-color: ${border_color};
+    `,
+  ]
+)
 
 function getImage(props: any, image_color: string) {
   let icon = <AvatarIcon color={image_color} />
