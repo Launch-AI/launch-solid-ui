@@ -9,7 +9,7 @@ Primary.args = {
   avatarType: 'filled',
   shape: 'rounded',
   color: 'primary',
-  imageType: 'avatar',
+  childType: 'avatar',
 }
 
 export const Secondary = TypeTemplate.bind({})
@@ -17,16 +17,16 @@ Secondary.args = {
   avatarType: 'outlined-shadow',
   shape: 'square',
   color: 'secondary',
-  imageType: 'letter',
-  letters: 'AS',
+  childType: 'character',
+  characters: 'AS',
 }
 
 export const Tertiary = TypeTemplate.bind({})
 Tertiary.args = {
   avatarType: 'outlined-shadow',
-  shape: 'circle',
-  color: 'teal',
-  imageType: 'image',
+  shape: 'rounded',
+  color: 'primary',
+  childType: 'image',
   imagePath: imageFile,
 }
 

@@ -3,8 +3,8 @@ import tw from 'twin.macro'
 import { styled } from '../../utils/styled'
 
 export type AvatarProps = {
-  avatarType?: string
-  shape?: string
+  avatarType?: 'filled-shadow' | 'filled' | 'outlined' | 'outlined-shadow'
+  shape?: 'rounded' | 'square'
   color?:
     | 'gray'
     | 'grey'
@@ -20,9 +20,9 @@ export type AvatarProps = {
     | 'secondary'
     | 'orange'
     | 'yellow'
-  imageType?: string
+  childType?: 'avatar' | 'image' | 'character'
   imagePath?: string
-  letters?: string
+  characters?: string
 }
 
 export const Avatar = (props: AvatarProps) => {
@@ -51,7 +51,7 @@ export const Avatar = (props: AvatarProps) => {
   return (
     <div>
       <StyledDiv
-        imageType={props.imageType}
+        childType={props.childType}
         backgroundColor={backgroundColor}
         border={border}
         borderColor={borderColor}
@@ -67,7 +67,7 @@ export const Avatar = (props: AvatarProps) => {
 
 const StyledDiv = styled('div')(
   ({
-    imageType,
+    childType,
     backgroundColor,
     border,
     borderColor,
@@ -86,7 +86,7 @@ const StyledDiv = styled('div')(
 
     shape === 'square' && `border-radius: 20px;`,
 
-    imageType === 'letter' && tw`text-2xl`,
+    childType === 'character' && tw`text-2xl`,
 
     shadow === true &&
       `box-shadow: 0px 2px 4px rgba(18, 17, 17, 0.04), 0px 8px 16px rgba(113, 112, 112, 0.16);`,
@@ -95,11 +95,11 @@ const StyledDiv = styled('div')(
 
 function getImage(props: any, imageColor: string) {
   let icon = <AvatarIcon color={imageColor} />
-  if (props.imageType == 'image') {
+  if (props.childType == 'image') {
     icon = <img width="100%" src={props.imagePath} alt="Image" />
   }
-  if (props.imageType == 'letter') {
-    icon = props.letters
+  if (props.childType == 'character') {
+    icon = props.characters
   }
 
   return icon
