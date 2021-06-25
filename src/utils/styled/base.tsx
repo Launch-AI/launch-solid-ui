@@ -184,7 +184,8 @@ const createStyled = (tag: any, options?: StyledOptions) => {
         }
         return `.${targetClassName}`
       },
-    })(Styled as any).withComponent = (
+    })
+    ;(Styled as any).withComponent = (
       nextTag: StyledElementType<Props>,
       nextOptions?: StyledOptions
     ) => {
