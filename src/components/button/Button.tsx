@@ -1,34 +1,55 @@
-import tw from 'twin.macro'
-import { styled, css } from '../../utils/styled'
+import type { JSX } from 'solid-js'
+
+import withDefaults from '../../utils/with-defaults'
+import StyledButton from './StyledButton'
+import StyledIcon from './StyledIcon'
 
 export type ButtonProps = {
-  type?: 'primary' | 'secondary'
-  children: any
-}
+  block?: boolean
+  variant?: 'primary' | 'secondary' | 'ghost'
+  type?: 'filled' | 'outlined' | 'text'
+  size?: 'small' | 'medium' | 'large' | 'extra-large'
+  iconPosition?: 'before' | 'after'
+  shape?: 'rounded' | 'circle'
+  disabled?: boolean
+} & (
+  | // Must specify icon, children or both - but never none of them
+  {
+      icon: JSX.Element
+      children?: never
+    }
+  | { icon?: never; children: any }
+  | { icon: JSX.Element; children: any }
+)
 
-const StyledButton = styled('button')(({ type }: ButtonProps) => [
-  // Base styles
-  tw`px-8 py-2 rounded focus:outline-none transform duration-75`,
+function Button(props: ButtonProps) {
+  const { size, icon, iconPosition, children } = props
 
-  // Variant styles
-  tw`hover:(scale-105 text-yellow-400)`,
+  const beforeIcon = iconPosition === 'before' && icon && (
+    <StyledIcon position={children && 'before'} size={size}>
+      {icon}
+    </StyledIcon>
+  )
 
-  // Type primary styles
-  type === 'primary' && tw`bg-black text-white border-black`,
+  const afterIcon = iconPosition === 'after' && icon && (
+    <StyledIcon position={children && 'after'} size={size}>
+      {icon}
+    </StyledIcon>
+  )
 
-  // Type secondary styles
-  type === 'secondary' && [
-    css`
-      box-shadow: 0 0.1em 0 0 rgba(0, 0, 0, 0.25);
-    `,
-    tw`border-2 border-yellow-600`,
-  ],
-])
-
-export function Button({ type, children }: ButtonProps) {
   return (
-    <div>
-      <StyledButton type={type}>{children}</StyledButton>
-    </div>
+    <StyledButton {...props} hasChildren={!!children}>
+      {beforeIcon}
+      {children}
+      {afterIcon}
+    </StyledButton>
   )
 }
+
+export default withDefaults(Button, {
+  variant: 'primary',
+  type: 'filled',
+  size: 'medium',
+  iconPosition: 'before',
+  shape: 'rounded',
+})

@@ -1,6 +1,7 @@
-import type { EmotionCache } from '@emotion/utils'
-import createCache from '@emotion/cache'
 import { createContext, useContext } from 'solid-js'
+
+import createCache from '@emotion/cache'
+import type { EmotionCache } from '@emotion/utils'
 
 const isBrowser = typeof document !== 'undefined'
 
@@ -23,7 +24,7 @@ let withEmotionCache: any = function withEmotionCache<Props, Ref>(
 ) {
   return (props: Props, ref: Ref) => {
     // the cache will never be null in the browser
-    let cache = useContext(EmotionCacheContext) as any as EmotionCache
+    let cache = (useContext(EmotionCacheContext) as any) as EmotionCache
 
     return func(props, cache, ref)
   }

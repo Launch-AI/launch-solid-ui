@@ -1,5 +1,6 @@
 import { render } from 'solid-js/web'
-import { Button } from './Button'
+
+import Button from './Button'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')

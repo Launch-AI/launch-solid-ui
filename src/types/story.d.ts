@@ -1,3 +1,5 @@
+import type { Component } from 'solid-js'
+
 import type {
   Args as DefaultArgs,
   Annotations,
@@ -5,7 +7,6 @@ import type {
   BaseStory,
 } from '@storybook/addons'
 import type { Meta, Args } from '@storybook/html'
-import type { Component } from 'solid-js'
 
 declare global {
   declare type HTMLReturnType = any

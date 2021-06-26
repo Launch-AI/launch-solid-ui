@@ -1,4 +1,5 @@
 import { Component } from 'solid-js'
+
 import isPropValid from '@emotion/is-prop-valid'
 
 export type RefCallback<T> = {

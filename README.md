@@ -1,52 +1,107 @@
-This project was bootstrapped with [Create Solid](https://github.com/ryansolid/create-solid). Create Solid is a Fork of Create React App.
+# Welcome to Launch UI
 
-## Available Scripts
+A UI library containing a set of beautiful Solid JS components.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+_This project is not yet available on NPM._
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Prerequisites
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- [yarn](https://yarnpkg.com/getting-started/install) _The project uses yarn over alternatives such as NPM/PNPM/..._
+- [node](https://nodejs.org/)
 
-### `npm test`
+## Clone & Setup
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the repository to your local machine.
 
-### `npm run build`
+```bash
+$ git clone git@github.com:launch-ai/launch-ui.git
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+Install dependencies & git hooks.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```bash
+$ yarn install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run the storybook.
 
-### Code Splitting
+```bash
+$ yarn run storybook
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Styling
 
-### Analyzing the Bundle Size
+Styling is done with [Emotion](https://emotion.sh/) and [twin.macro](https://github.com/ben-rogerson/twin.macro) using a custom styled util.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Example:
 
-### Making a Progressive Web App
+```tsx
+import tw from 'twin.macro'
+import { styled } from './src/utils/styled'
+type ButtonProps = { block: boolean; children: any }
+type StyledButtonProps = ButtonProps
+const baseStyles = tw`border border-black px-4 py-2`
+const blockStyles = ({ block }: StyledButtonProps) => block && tw`block w-full`
+const StyledButton = styled<StyledButtonProps>('button')([
+  baseStyles,
+  blockStyles,
+])
+function Button(props: ButtonProps) {
+  const { children } = props
+  return <StyledButton {...props}>{children}</StyledButton>
+}
+export default Button
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Commit messages
 
-### Advanced Configuration
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) is used for all commit messages with the [AngularJS](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) variation.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+This is enforced by a pre-commit hook with [commitlint](https://github.com/conventional-changelog/commitlint). If your commit message does not meet the conventional commits standard, the commit hook will fail. This helps with generating changelogs with version updates.
 
-### Deployment
+In summary, the commit message header has the following format:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```
+<type>(<scope>): <short summary>
+  │       │             │
+  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+  │       │
+  │       └─⫸ Commit Scope: products|orders|settings|...
+  │
+  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
+```
 
-### `npm run build` fails to minify
+The commit type must be one of the following:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- **build**: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+- **ci**: Changes to our CI configuration files and scripts (example scopes: Circle, BrowserStack, SauceLabs)
+- **docs**: Documentation only changes
+- **feat**: A new feature
+- **fix**: A bug fix
+- **perf**: A code change that improves performance
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **test**: Adding missing tests or correcting existing tests
+
+### Pre-commit Hooks
+
+[Husky](https://typicode.github.io/husky/) and [lint-staged](https://github.com/okonet/lint-staged#readme) is used for pre-commit git hooks.
+
+When you execute a commit, the following commands will be executed:
+
+- Lint staged files:
+
+  `npx lint-staged`
+
+- Validate commit message:
+
+  `npx --no-install commitlint --edit ""`
+
+The configuration can be found in `.husky/pre-commit` and in package.json under `"lint-staged"`.
+
+Additional hooks can be added with:
+
+```bash
+npx husky add .husky/pre-commit "yarn test"
+```

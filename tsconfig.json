@@ -15,11 +15,7 @@
     "emitDeclarationOnly": true,
     "noEmit": false,
     "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "paths": {
-      "components/*": ["./src/components/*"],
-      "utils/*": ["./src/utils/*"]
-    }
+    "jsxImportSource": "solid-js"
   },
   "include": ["src", "types"]
 }

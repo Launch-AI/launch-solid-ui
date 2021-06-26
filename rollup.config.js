@@ -1,8 +1,9 @@
 import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
-import peerDepsExternal from 'rollup-plugin-peer-deps-external'
-import resolve from 'rollup-plugin-node-resolve'
 import dts from 'rollup-plugin-dts'
+import resolve from 'rollup-plugin-node-resolve'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+
 import pkg from './package.json'
 
 const config = {
