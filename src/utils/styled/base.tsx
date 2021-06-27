@@ -1,3 +1,4 @@
+import { createMemo, mergeProps } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 
 import { serializeStyles } from '@emotion/serialize'
@@ -80,64 +81,87 @@ const createStyled = (tag: any, options?: StyledOptions) => {
       (props: Props, cache: any, ref: any) => {
         const finalTag = (shouldUseAs && (props as any).as) || baseTag
 
-        let className = ''
         let classInterpolations: string[] = []
-        let mergedProps: Record<string, any> = props
-        if ((props as any).theme == null) {
-          mergedProps = {}
-          for (let key in props) {
-            mergedProps[key] = (props as any)[key]
-          }
-          // mergedProps.theme = useContext(ThemeContext)
-        }
-
-        if (typeof (props as any).className === 'string') {
-          className = getRegisteredStyles(
+        let mergedProps: Record<string, any> = mergeProps(props)
+        // if ((props as any).theme == null) {
+        //   mergedProps = {}
+        //   for (let key in props) {
+        //     mergedProps[key] = (props as any)[key]
+        //   }
+        //   // mergedProps.theme = useContext(ThemeContext)
+        // }
+        const getRules = createMemo(() => {
+          const serialized = serializeStyles(
+            styles.concat(classInterpolations),
             cache.registered,
-            classInterpolations,
-            (props as any).className
+            mergedProps
           )
-        } else if ((props as any).className != null) {
-          className = `${(props as any).className} `
-        }
 
-        const serialized = serializeStyles(
-          styles.concat(classInterpolations),
-          cache.registered,
-          mergedProps
-        )
-        const rules = insertStyles(
-          cache,
-          serialized,
-          typeof finalTag === 'string'
-        )
-        className += `${cache.key}-${serialized.name}`
-        if (targetClassName !== undefined) {
-          className += ` ${targetClassName}`
-        }
+          const rules = insertStyles(
+            cache,
+            serialized,
+            typeof finalTag === 'string'
+          )
 
-        const finalShouldForwardProp =
-          shouldUseAs && shouldForwardProp === undefined
-            ? getDefaultShouldForwardProp(finalTag)
-            : defaultShouldForwardProp
+          return { rules, serialized }
+        })
+        const className = createMemo(() => {
+          let className = ''
 
-        let newProps: Record<string, any> = {}
-
-        for (let key in props) {
-          if (shouldUseAs && key === 'as') continue
-
-          if (finalShouldForwardProp(key)) {
-            newProps[key] = (props as any)[key]
+          if (typeof (props as any).className === 'string') {
+            className = getRegisteredStyles(
+              cache.registered,
+              classInterpolations,
+              (props as any).className
+            )
+          } else if ((props as any).className != null) {
+            className = `${(props as any).className} `
           }
-        }
 
-        newProps.className = className
-        newProps.ref = ref
+          const rulesSerialized = getRules()
 
-        const ele = <Dynamic component={finalTag} {...newProps} />
-        if (!isBrowser && rules !== undefined) {
-          let serializedNames = serialized.name
-          let next = serialized.next
+          className += `${cache.key}-${rulesSerialized.serialized.name}`
+          if (targetClassName !== undefined) {
+            className += ` ${targetClassName}`
+          }
+
+          return className
+        })
+
+        // const finalShouldForwardProp =
+        //   shouldUseAs && shouldForwardProp === undefined
+        //     ? getDefaultShouldForwardProp(finalTag)
+        //     : defaultShouldForwardProp
+
+        let newProps: Record<string, any> = mergeProps(props, {
+          className: className(),
+          ref,
+        })
+
+        // for (let key in props) {
+        // if (key === 'className' || key === 'ref') continue
+
+        // if (shouldUseAs && key === 'as') {
+        //   delete newProps[key]
+        //   continue
+        // }
+
+        // if (!finalShouldForwardProp(key)) {
+        //   delete newProps[key]
+        //   // newProps[key] = (props as any)[key]
+        // }
+        // }
+
+        // newProps.className = className
+        // newProps.ref = ref
+
+        const ele = (
+          <Dynamic component={finalTag} {...newProps} className={className()} />
+        )
+        if (!isBrowser && getRules().rules !== undefined) {
+          const rulesSerialized = getRules()
+          let serializedNames = rulesSerialized.serialized.name
+          let next = rulesSerialized.serialized.next
           while (next !== undefined) {
             serializedNames += ' ' + next.name
             next = next.next
@@ -147,7 +171,7 @@ const createStyled = (tag: any, options?: StyledOptions) => {
               <style
                 {...{
                   [`data-emotion`]: `${cache.key} ${serializedNames}`,
-                  dangerouslySetInnerHTML: { __html: rules },
+                  dangerouslySetInnerHTML: { __html: rulesSerialized.rules },
                   nonce: cache.sheet.nonce,
                 }}
               />
@@ -155,6 +179,7 @@ const createStyled = (tag: any, options?: StyledOptions) => {
             </>
           )
         }
+
         return ele
       }
     )
@@ -167,7 +192,6 @@ const createStyled = (tag: any, options?: StyledOptions) => {
     //           ? baseTag
     //           : baseTag.displayName || baseTag.name || 'Component'
     //       })`
-    // console.log(tag)
     // ;(Styled as any).defaultProps = tag.defaultProps(
     //   Styled as any
     // ).__emotion_real = Styled
