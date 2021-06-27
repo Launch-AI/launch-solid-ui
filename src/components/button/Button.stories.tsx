@@ -1,11 +1,7 @@
 import AddIcon from '../../icons/AddIcon'
 import Button, { ButtonProps } from './Button'
 
-const ButtonTemplate: Story<ButtonProps> = (args) => (
-  <div>
-    <Button {...args} />
-  </div>
-)
+const ButtonTemplate: Story<ButtonProps> = (args) => <Button {...args} />
 
 export const Primary = ButtonTemplate.bind({})
 Primary.args = {

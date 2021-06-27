@@ -1,10 +1,8 @@
-import Checbox, { CheckboxProps } from './Checkbox'
+import { createSignal } from 'solid-js'
 
-const CheckboxTemplate: Story<CheckboxProps> = (args) => (
-  <div>
-    <Checbox {...args} />
-  </div>
-)
+import Checkbox, { CheckboxProps } from './Checkbox'
+
+const CheckboxTemplate: Story<CheckboxProps> = (args) => <Checkbox {...args} />
 
 export const Enabled = CheckboxTemplate.bind({})
 Enabled.args = {
@@ -29,6 +27,6 @@ Disabled.args = {
 
 export default {
   title: 'Checkbox',
-  component: Checbox,
+  component: Checkbox,
   argTypes: {},
 }
