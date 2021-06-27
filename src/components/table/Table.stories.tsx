@@ -43,11 +43,7 @@ Normal.args = {
           return 1
         }
 
-        // names must be equal
         return 0
-      },
-      render: (data) => {
-        return `Hey ${data}`
       },
     },
     {
