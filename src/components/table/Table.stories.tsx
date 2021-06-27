@@ -1,6 +1,13 @@
 import Table, { TableProps } from './Table'
 
-const dummyData = [
+interface DataItem {
+  key: string
+  name: string
+  age: number
+  origin: string
+}
+
+const dummyData: DataItem[] = [
   {
     key: 'first',
     name: 'Ari Seyhun',
@@ -15,7 +22,7 @@ const dummyData = [
   },
 ]
 
-const TableTemplate: Story<TableProps<{}>> = (args) => <Table {...args} />
+const TableTemplate: Story<TableProps<DataItem>> = (args) => <Table {...args} />
 
 export const Normal = TableTemplate.bind({})
 Normal.args = {
@@ -25,6 +32,20 @@ Normal.args = {
       title: 'Name',
       key: 'name',
       dataIndex: 'name',
+      sorter: (a, b) => {
+        const nameA = a.name.toUpperCase()
+        const nameB = b.name.toUpperCase()
+
+        if (nameA < nameB) {
+          return -1
+        }
+        if (nameA > nameB) {
+          return 1
+        }
+
+        // names must be equal
+        return 0
+      },
       render: (data) => {
         return `Hey ${data}`
       },
@@ -33,6 +54,7 @@ Normal.args = {
       title: 'Age',
       key: 'age',
       dataIndex: 'age',
+      sorter: (a, b) => a.age - b.age,
     },
     {
       title: 'Origin',

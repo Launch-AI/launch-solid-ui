@@ -1,40 +1,27 @@
-import { createEffect, For, JSX } from 'solid-js'
-import { $RAW, createStore } from 'solid-js/store'
+import { createEffect, For, JSX, Show } from 'solid-js'
+import { createStore } from 'solid-js/store'
 
-import Checkbox from '../checkbox/Checkbox'
+import { Checkbox } from '../checkbox'
+import { Sorter } from '../sorter'
 import StyledTable from './StyledTable'
 import StyledTableData from './StyledTableData'
-import StyledTableHead from './StyledTableHead'
+import StyledTableHead, { StyledTableHeadInner } from './StyledTableHead'
 import StyledTableRow from './StyledTableRow'
+import getDataKey from './getDataKey'
 
-type RowSelection<Record> = {
+export type RowSelection<Record> = {
   type?: 'checkbox' // | 'radio'
   rowKey?: string | ((record: Record) => string)
   selectedRows?: string[]
   onChange?: (selectedRowKeys: string[], selectedRows: Record[]) => void
 }
 
-type Column<Record> = {
+export type Column<Record> = {
   title?: string
   dataIndex?: string
   key?: string
+  sorter?: (a: Record, b: Record) => number
   render?: (data: any, record: Record) => JSX.Element
-}
-
-function getDataKey(record: any, rowKey?: RowSelection<any>['rowKey']) {
-  let key: string | undefined
-  if (typeof rowKey === 'string') {
-    key = record[rowKey]
-  } else if (typeof rowKey === 'function') {
-    key = rowKey(record)
-  } else {
-    key = record['key']
-  }
-  if (key == null) {
-    console.warn('Row key missing in table')
-  }
-
-  return key
 }
 
 export type TableProps<Record> = {
@@ -45,30 +32,48 @@ export type TableProps<Record> = {
 }
 
 function Table<Record>(props: TableProps<Record>) {
-  const [selectedRows, setSelectedRows] = createStore({
+  const [rows, setRows] = createStore({
     selected: new Set(props.rowSelection?.selectedRows || []),
+    sorted: props.data,
+    sortCol: undefined as string | undefined,
+    sortDir: undefined as 'asc' | 'desc' | undefined,
   })
 
   createEffect(() => {
     if (props.rowSelection?.selectedRows != null) {
-      setSelectedRows({ selected: new Set(props.rowSelection.selectedRows) })
+      setRows({ selected: new Set(props.rowSelection.selectedRows) })
+    }
+  })
+
+  createEffect(() => {
+    if (rows.sortCol && rows.sortDir) {
+      const sortedRows = [...props.data].sort(
+        props.columns.find(({ key }) => key === rows.sortCol)?.sorter
+      )
+      if (rows.sortDir === 'desc') {
+        sortedRows.reverse()
+      }
+
+      setRows({
+        sorted: sortedRows,
+      })
     }
   })
 
   const handleSelectedRowsChange = () => {
     if (props.rowSelection?.onChange) {
       props.rowSelection.onChange(
-        Array.from(selectedRows.selected),
+        Array.from(rows.selected),
         props.data.filter((record) => {
           const key = getDataKey(record, props.rowSelection?.rowKey)
-          return key && selectedRows.selected.has(key)
+          return key && rows.selected.has(key)
         })
       )
     }
   }
 
   const selectAll = () => {
-    setSelectedRows({
+    setRows({
       selected: new Set(
         props.data
           .map(
@@ -80,7 +85,7 @@ function Table<Record>(props: TableProps<Record>) {
   }
 
   const selectNone = () => {
-    setSelectedRows({
+    setRows({
       selected: new Set(),
     })
   }
@@ -92,12 +97,12 @@ function Table<Record>(props: TableProps<Record>) {
           <StyledTableHead bordered={false} width={16}>
             <Checkbox
               block
-              checked={selectedRows.selected.size > 0}
-              indeterminate={selectedRows.selected.size < props.data.length}
+              checked={rows.selected.size > 0}
+              indeterminate={rows.selected.size < props.data.length}
               onChange={() => {
-                if (selectedRows.selected.size < props.data.length) {
+                if (rows.selected.size < props.data.length) {
                   selectAll()
-                } else if (selectedRows.selected.size >= props.data.length) {
+                } else if (rows.selected.size >= props.data.length) {
                   selectNone()
                 }
               }}
@@ -105,7 +110,33 @@ function Table<Record>(props: TableProps<Record>) {
           </StyledTableHead>
         )}
         <For each={props.columns}>
-          {(column) => <StyledTableHead>{column.title || ''}</StyledTableHead>}
+          {(column) => {
+            const handleSortChange = (dir?: 'asc' | 'desc') => {
+              if (dir != null || rows.sortCol == null) {
+                setRows({ sortCol: dir ? column.key : undefined, sortDir: dir })
+              } else if (dir == null && rows.sortCol == column.key) {
+                setRows({
+                  sorted: [...props.data],
+                })
+              }
+            }
+
+            return (
+              <StyledTableHead>
+                <StyledTableHeadInner>
+                  <span>{column.title || ''}</span>
+                  <Show when={column.sorter && column.key}>
+                    <Sorter
+                      dir={
+                        rows.sortCol === column.key ? rows.sortDir : undefined
+                      }
+                      onChange={handleSortChange}
+                    />
+                  </Show>
+                </StyledTableHeadInner>
+              </StyledTableHead>
+            )
+          }}
         </For>
       </StyledTableRow>
     </thead>
@@ -113,7 +144,7 @@ function Table<Record>(props: TableProps<Record>) {
 
   const tableBody = (
     <tbody>
-      <For each={props.data}>
+      <For each={rows.sorted}>
         {(record: any) => {
           const key = getDataKey(record, props.rowSelection?.rowKey)
 
@@ -123,10 +154,10 @@ function Table<Record>(props: TableProps<Record>) {
                 <StyledTableData bordered={false} width={16}>
                   <Checkbox
                     block
-                    checked={(key && selectedRows.selected.has(key)) || false}
+                    checked={(key && rows.selected.has(key)) || false}
                     onChange={(newChecked) => {
                       if (key) {
-                        setSelectedRows('selected', (selectedRows) => {
+                        setRows('selected', (selectedRows) => {
                           // @ts-ignore
                           const newRows = new Set(selectedRows)
 

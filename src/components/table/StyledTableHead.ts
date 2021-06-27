@@ -21,4 +21,8 @@ const StyledTableHead = styled('th')<StyledTableHeadProps>(
   widthStyles
 )
 
+export const StyledTableHeadInner = styled('div')(
+  tw`flex justify-between items-center`
+)
+
 export default StyledTableHead
