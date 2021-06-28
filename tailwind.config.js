@@ -31,6 +31,9 @@ module.exports = {
       borderRadius: {
         '3xl': '1.5rem',
       },
+      fontSize: {
+        base: '0.9375rem',
+      },
     },
   },
   variants: {
