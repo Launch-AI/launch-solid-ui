@@ -1,6 +1,6 @@
+import { styled } from 'emotion-solid'
 import tw from 'twin.macro'
 
-import { styled } from '../../utils/styled'
 import type { TableProps } from './Table'
 
 type StyledTableProps<Record = any> = TableProps<Record>
