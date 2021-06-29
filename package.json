@@ -4,6 +4,9 @@
   "private": true,
   "module": "dist/index.js",
   "types": "dist/types.d.ts",
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "test": "jest",
