@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js'
+import { Component, createSignal } from 'solid-js'
 
 import StyledCheckbox from './StyledCheckbox'
 import StyledHiddenCheckbox from './StyledHiddenCheckbox'
@@ -12,7 +12,7 @@ export type CheckboxProps = {
   onChange?: (checked: boolean) => void
 }
 
-function Checkbox(props: CheckboxProps) {
+const Checkbox: Component<CheckboxProps> = (props) => {
   const { checked, indeterminate, disabled, onChange } = props
   const [isChecked, setIsChecked] = createSignal(checked || false)
 
