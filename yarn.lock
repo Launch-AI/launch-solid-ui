@@ -1342,7 +1342,7 @@
     "@emotion/utils" "0.11.3"
     "@emotion/weak-memoize" "0.2.5"
 
-"@emotion/cache@^11.1.3":
+"@emotion/cache@^11.1.3", "@emotion/cache@^11.4.0":
   version "11.4.0"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.4.0.tgz#293fc9d9a7a38b9aad8e9337e5014366c3b09ac0"
   integrity sha512-Zx70bjE7LErRO9OaZrhf22Qye1y4F7iDl+ITjet0J+i+B88PrAOBkKvaAWhxsZf72tDLajwCgfCjJ2dvH77C3g==
@@ -5182,6 +5182,16 @@ emojis-list@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-3.0.0.tgz#5570662046ad29e2e916e71aae260abdff4f6a78"
   integrity sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==
+
+emotion-solid@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/emotion-solid/-/emotion-solid-1.0.0.tgz#35d43beb3253b16992d63ab953b035992264c80f"
+  integrity sha512-MN97qSSeciO5yqKk6929b8/7z4XSdo9d6tolQQ/kOA0eXxf6YmQFhFAtlqXWEArCZFoahVi736nt2yJxX2ZuEw==
+  dependencies:
+    "@emotion/cache" "^11.4.0"
+    "@emotion/is-prop-valid" "^1.1.0"
+    "@emotion/serialize" "^1.0.2"
+    "@emotion/utils" "^1.0.0"
 
 emotion-theming@^10.0.27:
   version "10.0.27"

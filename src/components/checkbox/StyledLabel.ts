@@ -1,6 +1,5 @@
+import { styled } from 'emotion-solid'
 import tw from 'twin.macro'
-
-import { styled } from '../../utils/styled'
 
 type StyledLabelProps = { block?: boolean }
 
