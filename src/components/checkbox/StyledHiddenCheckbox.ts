@@ -1,7 +1,6 @@
+import { styled } from 'emotion-solid'
 import type { JSX } from 'solid-js'
 import tw from 'twin.macro'
-
-import { styled } from '../../utils/styled'
 
 type StyledCheckboxProps = JSX.IntrinsicElements['input']
 
