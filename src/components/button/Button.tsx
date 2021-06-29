@@ -1,4 +1,4 @@
-import type { JSX } from 'solid-js'
+import type { Component, JSX } from 'solid-js'
 
 import withDefaults from '../../utils/with-defaults'
 import StyledButton from './StyledButton'
@@ -6,12 +6,13 @@ import StyledIcon from './StyledIcon'
 
 export type ButtonProps = {
   block?: boolean
-  variant?: 'primary' | 'secondary' | 'ghost'
+  variant?: 'default' | 'primary' | 'secondary' | 'ghost'
   type?: 'filled' | 'outlined' | 'text'
-  size?: 'small' | 'medium' | 'large' | 'extra-large'
+  size?: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large'
   iconPosition?: 'before' | 'after'
   shape?: 'rounded' | 'circle'
   disabled?: boolean
+  onClick?: JSX.IntrinsicElements['button']['onClick']
 } & (
   | // Must specify icon, children or both - but never none of them
   {
@@ -22,7 +23,7 @@ export type ButtonProps = {
   | { icon: JSX.Element; children: any }
 )
 
-function Button(props: ButtonProps) {
+const Button: Component<ButtonProps> = (props) => {
   const { size, icon, iconPosition, children } = props
 
   const beforeIcon = iconPosition === 'before' && icon && (
@@ -47,7 +48,7 @@ function Button(props: ButtonProps) {
 }
 
 export default withDefaults(Button, {
-  variant: 'primary',
+  variant: 'default',
   type: 'filled',
   size: 'medium',
   iconPosition: 'before',
