@@ -1,9 +1,10 @@
-import merge from 'lodash/merge'
-import { Component } from 'solid-js'
+import { Component, mergeProps } from 'solid-js'
 
 export default function withDefaults<P = {}>(
   Comp: Component<P>,
   defaultProps: Partial<P>
 ) {
-  return (props: any) => <Comp {...merge(defaultProps, props)} />
+  return ((props: any) => (
+    <Comp {...mergeProps(defaultProps, props)} />
+  )) as Component<P>
 }

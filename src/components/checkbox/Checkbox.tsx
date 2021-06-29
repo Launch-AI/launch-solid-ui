@@ -1,4 +1,4 @@
-import { createEffect, createMemo, createSignal } from 'solid-js'
+import { createEffect, createSignal } from 'solid-js'
 
 import StyledCheckbox from './StyledCheckbox'
 import StyledHiddenCheckbox from './StyledHiddenCheckbox'

@@ -140,7 +140,7 @@ export default {
   component: Button,
   argTypes: {
     variant: {
-      options: ['primary', 'secondary', 'ghost'],
+      options: ['default', 'primary', 'secondary', 'ghost'],
       control: { type: 'select' },
     },
     type: {
