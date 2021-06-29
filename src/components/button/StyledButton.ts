@@ -1,6 +1,6 @@
+import { styled } from 'emotion-solid'
 import tw from 'twin.macro'
 
-import { styled } from '../../utils/styled'
 import type { ButtonProps } from './Button'
 
 type StyledButtonProps = ButtonProps & {

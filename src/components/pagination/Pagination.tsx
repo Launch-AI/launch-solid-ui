@@ -20,11 +20,11 @@ const Pagination: Component<PaginationProps> = (props) => {
   })
 
   const previous = () => {
-    setCurrentPage((oldPage) => Math.max(1, oldPage - 1))
+    setCurrentPage(Math.max(1, currentPage() - 1))
   }
 
   const next = () => {
-    setCurrentPage((oldPage) => Math.min(props.pages, oldPage + 1))
+    setCurrentPage(Math.min(props.pages, currentPage() + 1))
   }
 
   return (

@@ -1,6 +1,6 @@
+import { styled } from 'emotion-solid'
 import tw from 'twin.macro'
 
-import { styled } from '../../utils/styled'
 import type { CheckboxProps } from './Checkbox'
 
 type StyledCheckboxProps = CheckboxProps & JSX.IntrinsicElements['span']
