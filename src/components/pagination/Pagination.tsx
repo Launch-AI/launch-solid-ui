@@ -34,11 +34,11 @@ const Pagination: Component<PaginationProps> = (props) => {
   }
 
   const previous = () => {
-    changePage((oldPage) => Math.max(1, oldPage - 1))
+    setCurrentPage(Math.max(1, currentPage() - 1))
   }
 
   const next = () => {
-    changePage((oldPage) => Math.min(props.pages, oldPage + 1))
+    setCurrentPage(Math.min(props.pages, currentPage() + 1))
   }
 
   return (
