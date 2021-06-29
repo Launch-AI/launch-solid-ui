@@ -8,6 +8,7 @@ import StyledContainer from './StyledContainer'
 export type PaginationProps = {
   currentPage?: number
   pages: number
+  onChange?: (newPage: number) => void
 }
 
 const Pagination: Component<PaginationProps> = (props) => {
@@ -18,6 +19,19 @@ const Pagination: Component<PaginationProps> = (props) => {
       setCurrentPage(props.currentPage)
     }
   })
+
+  const changePage = (pageUpdate: number | ((prev: number) => number)) => {
+    if (typeof pageUpdate === 'number') {
+      setCurrentPage(pageUpdate)
+      props.onChange && props.onChange(pageUpdate)
+    } else {
+      setCurrentPage((oldPage) => {
+        const newPage = pageUpdate(oldPage)
+        props.onChange && props.onChange(newPage)
+        return newPage
+      })
+    }
+  }
 
   const previous = () => {
     setCurrentPage(Math.max(1, currentPage() - 1))
@@ -45,7 +59,7 @@ const Pagination: Component<PaginationProps> = (props) => {
               variant={currentPage() === index() + 1 ? 'primary' : 'default'}
               shape="circle"
               size="extra-small"
-              onClick={() => setCurrentPage(index() + 1)}
+              onClick={() => changePage(index() + 1)}
             >
               {index() + 1}
             </Button>
