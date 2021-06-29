@@ -46,7 +46,7 @@ const createStyled = (tag: any, options?: StyledOptions) => {
   return function <Props>(
     ...args: (object | ((props: Props) => object))[]
   ): PrivateStyledComponent<Props> {
-    let styles =
+    let styles: any[] =
       isReal && tag.__emotion_styles !== undefined
         ? tag.__emotion_styles.slice(0)
         : []
@@ -82,15 +82,11 @@ const createStyled = (tag: any, options?: StyledOptions) => {
         const finalTag = (shouldUseAs && (props as any).as) || baseTag
 
         let classInterpolations: string[] = []
-        let mergedProps: Record<string, any> = mergeProps(props)
-        // if ((props as any).theme == null) {
-        //   mergedProps = {}
-        //   for (let key in props) {
-        //     mergedProps[key] = (props as any)[key]
-        //   }
-        //   // mergedProps.theme = useContext(ThemeContext)
-        // }
+
         const getRules = createMemo(() => {
+          Object.values(props)
+          let mergedProps: Record<string, any> = mergeProps(props)
+
           const serialized = serializeStyles(
             styles.concat(classInterpolations),
             cache.registered,
@@ -105,7 +101,9 @@ const createStyled = (tag: any, options?: StyledOptions) => {
 
           return { rules, serialized }
         })
+
         const className = createMemo(() => {
+          Object.values(props)
           let className = ''
 
           if (typeof (props as any).className === 'string') {
@@ -133,10 +131,7 @@ const createStyled = (tag: any, options?: StyledOptions) => {
         //     ? getDefaultShouldForwardProp(finalTag)
         //     : defaultShouldForwardProp
 
-        let newProps: Record<string, any> = mergeProps(props, {
-          className: className(),
-          ref,
-        })
+        let newProps: Record<string, any> = mergeProps(props)
 
         // for (let key in props) {
         // if (key === 'className' || key === 'ref') continue
@@ -156,7 +151,12 @@ const createStyled = (tag: any, options?: StyledOptions) => {
         // newProps.ref = ref
 
         const ele = (
-          <Dynamic component={finalTag} {...newProps} className={className()} />
+          <Dynamic
+            component={finalTag}
+            {...newProps}
+            className={className()}
+            ref={ref}
+          />
         )
         if (!isBrowser && getRules().rules !== undefined) {
           const rulesSerialized = getRules()

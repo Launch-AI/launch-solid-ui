@@ -1,11 +1,7 @@
 import AddIcon from '../../icons/AddIcon'
 import Button, { ButtonProps } from './Button'
 
-const ButtonTemplate: Story<ButtonProps> = (args) => (
-  <div>
-    <Button {...args} />
-  </div>
-)
+const ButtonTemplate: Story<ButtonProps> = (args) => <Button {...args} />
 
 export const Primary = ButtonTemplate.bind({})
 Primary.args = {
@@ -144,7 +140,7 @@ export default {
   component: Button,
   argTypes: {
     variant: {
-      options: ['primary', 'secondary', 'ghost'],
+      options: ['default', 'primary', 'secondary', 'ghost'],
       control: { type: 'select' },
     },
     type: {
