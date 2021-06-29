@@ -1,4 +1,4 @@
-# Welcome to Launch UI
+# Welcome to Launch UI - Solid JS Version
 
 A UI library containing a set of beautiful Solid JS components.
 
