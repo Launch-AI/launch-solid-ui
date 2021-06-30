@@ -4,7 +4,6 @@ import { createStore } from 'solid-js/store'
 import { Checkbox } from '../checkbox'
 import { Skeleton } from '../skeleton'
 import { Sorter } from '../sorter'
-import StyledLoadingContainer from './StyledLoadingContainer'
 import StyledTable from './StyledTable'
 import StyledTableData from './StyledTableData'
 import StyledTableHead, { StyledTableHeadInner } from './StyledTableHead'
@@ -218,9 +217,7 @@ function Table<Record>(props: TableProps<Record>) {
                       (props.rowSelection?.type === 'checkbox' ? 1 : 0)
                     }
                   >
-                    <StyledLoadingContainer>
-                      <Skeleton rows={1} />
-                    </StyledLoadingContainer>
+                    <Skeleton rows={1} rounded />
                   </StyledTableData>
                 </StyledTableRow>
               )}
