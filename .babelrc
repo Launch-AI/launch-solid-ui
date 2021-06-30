@@ -1,4 +1,4 @@
 {
   "presets": ["solid", "@babel/typescript"],
-  "plugins": [["twin"], "macros"]
+  "plugins": ["twin", "macros"]
 }
