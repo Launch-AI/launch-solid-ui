@@ -32,8 +32,30 @@ module.exports = {
       borderRadius: {
         '3xl': '1.5rem',
       },
+      fontFamily: {
+        sans:
+          '"Inter",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
+      },
       fontSize: {
         base: '0.9375rem',
+        'heading-1': ['5.75rem', '7rem'],
+        'heading-2': ['3.625rem', '4.375rem'],
+        'heading-3': ['3rem', '3.5rem'],
+        'heading-4': ['2rem', '2.5rem'],
+        'heading-5': ['1.5rem', '1.75rem'],
+        'heading-6': ['1.1875rem', '1.5rem'],
+      },
+      letterSpacing: {
+        'heading-1': '-1.5px',
+        'heading-2': '-0.5px',
+        'heading-3': '0',
+        'heading-4': '0.25px',
+        'heading-5': '0',
+        'heading-6': '0.15px',
+      },
+      lineHeight: {
+        3.5: '0.875rem',
+        4.5: '1.125rem',
       },
     },
   },
