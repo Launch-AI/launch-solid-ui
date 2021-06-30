@@ -6,7 +6,7 @@ import type { CheckboxProps } from './Checkbox'
 type StyledCheckboxProps = CheckboxProps & JSX.IntrinsicElements['span']
 
 const baseStyles = [
-  tw`relative w-3 h-3 rounded border-2 border-solid border-primary active:border-primary-dark`,
+  tw`relative w-4 h-4 rounded border-2 border-solid border-primary active:border-primary-dark`,
   {
     '::after': tw`content absolute top-1/2 left-1/2 pointer-events-none w-9 h-9 bg-primary bg-opacity-10 rounded-full transform -translate-x-1/2 -translate-y-1/2 scale-0 transition duration-300 ease-out`,
     ':hover::after': tw`transform -translate-x-1/2 -translate-y-1/2 scale-100`,
