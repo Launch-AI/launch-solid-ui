@@ -2,7 +2,9 @@ import { createEffect, For, JSX, Show } from 'solid-js'
 import { createStore } from 'solid-js/store'
 
 import { Checkbox } from '../checkbox'
+import { Skeleton } from '../skeleton'
 import { Sorter } from '../sorter'
+import StyledLoadingContainer from './StyledLoadingContainer'
 import StyledTable from './StyledTable'
 import StyledTableData from './StyledTableData'
 import StyledTableHead, { StyledTableHeadInner } from './StyledTableHead'
@@ -29,6 +31,7 @@ export type TableProps<Record> = {
   columns: Column<Record>[]
   data: Record[]
   rowSelection?: RowSelection<Record>
+  loading?: boolean
 }
 
 function Table<Record>(props: TableProps<Record>) {
@@ -149,7 +152,7 @@ function Table<Record>(props: TableProps<Record>) {
           const key = getDataKey(record, props.rowSelection?.rowKey)
 
           return (
-            <StyledTableRow>
+            <StyledTableRow hoverable>
               {props.rowSelection?.type === 'checkbox' && (
                 <StyledTableData bordered={false} width={16}>
                   <Checkbox
@@ -201,10 +204,31 @@ function Table<Record>(props: TableProps<Record>) {
   )
 
   return (
-    <StyledTable {...props}>
-      {tableHead}
-      {tableBody}
-    </StyledTable>
+    <>
+      <StyledTable {...props}>
+        {tableHead}
+        <Show when={props.loading} fallback={tableBody}>
+          <tbody>
+            <For each={new Array(3)}>
+              {() => (
+                <StyledTableRow>
+                  <StyledTableData
+                    colSpan={
+                      props.columns.length +
+                      (props.rowSelection?.type === 'checkbox' ? 1 : 0)
+                    }
+                  >
+                    <StyledLoadingContainer>
+                      <Skeleton rows={1} />
+                    </StyledLoadingContainer>
+                  </StyledTableData>
+                </StyledTableRow>
+              )}
+            </For>
+          </tbody>
+        </Show>
+      </StyledTable>
+    </>
   )
 }
 
