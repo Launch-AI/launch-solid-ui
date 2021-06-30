@@ -5183,10 +5183,10 @@ emojis-list@^3.0.0:
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-3.0.0.tgz#5570662046ad29e2e916e71aae260abdff4f6a78"
   integrity sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==
 
-emotion-solid@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/emotion-solid/-/emotion-solid-1.0.0.tgz#35d43beb3253b16992d63ab953b035992264c80f"
-  integrity sha512-MN97qSSeciO5yqKk6929b8/7z4XSdo9d6tolQQ/kOA0eXxf6YmQFhFAtlqXWEArCZFoahVi736nt2yJxX2ZuEw==
+emotion-solid@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/emotion-solid/-/emotion-solid-1.1.0.tgz#7047085398eb39cd2a6a4f194713d6f1ba535885"
+  integrity sha512-HATdMjMVYBJ+i/Vi004bJulnWCQq6foDnepttAslC5qZER4/l7RoRbIcgen2F66NMyS9XINptL2FhqMBICJMqg==
   dependencies:
     "@emotion/cache" "^11.4.0"
     "@emotion/is-prop-valid" "^1.1.0"
