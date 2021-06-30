@@ -6,6 +6,8 @@ import StyledText from './StyledText'
 export type TextProps = {
   type?: 'normal' | 'large' | 'caption' | 'overline'
   weight?: 'light' | 'normal' | 'medium' | 'bold'
+  underline?: boolean
+  italic?: boolean
 }
 
 const Text: Component<TextProps> = (props) => {
@@ -15,4 +17,6 @@ const Text: Component<TextProps> = (props) => {
 export default withDefaults(Text, {
   type: 'normal',
   weight: 'normal',
+  underline: false,
+  italic: false,
 })

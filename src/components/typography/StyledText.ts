@@ -21,10 +21,17 @@ const weightStyles = ({ weight }: StyledTextProps) => [
   weight === 'bold' && tw`font-bold`,
 ]
 
+const underlineStyles = ({ underline }: StyledTextProps) =>
+  underline && tw`underline`
+
+const italicStyles = ({ italic }: StyledTextProps) => italic && tw`italic`
+
 const StyledText = styled('span')<StyledTextProps>(
   baseStyles,
   typeStyles,
-  weightStyles
+  weightStyles,
+  underlineStyles,
+  italicStyles
 )
 
 export default StyledText

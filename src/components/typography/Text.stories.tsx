@@ -50,6 +50,14 @@ export const Overline: Story<TextProps> = (args) => (
   </For>
 )
 
+export const Underline: Story<TextProps> = (args) => (
+  <Text underline>Text underline</Text>
+)
+
+export const Italic: Story<TextProps> = (args) => (
+  <Text italic>Text underline</Text>
+)
+
 export default {
   title: 'Text',
   component: Text,
