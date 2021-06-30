@@ -1,6 +1,7 @@
 export * from './components/button'
 export * from './components/checkbox'
 export * from './components/pagination'
+export * from './components/skeleton'
 export * from './components/table'
 export * from './components/tabs'
 export * from './components/typography'
