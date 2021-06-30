@@ -53,6 +53,10 @@ module.exports = {
         'heading-5': '0',
         'heading-6': '0.15px',
       },
+      lineHeight: {
+        3.5: '0.875rem',
+        4.5: '1.125rem',
+      },
     },
   },
   variants: {
