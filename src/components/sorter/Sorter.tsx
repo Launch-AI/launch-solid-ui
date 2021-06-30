@@ -4,7 +4,7 @@ import ArrowIcon from '../../icons/ArrowIcon'
 import StyledArrow from './StyledArrow'
 import StyledContainer from './StyledContainer'
 
-type SorterProps = {
+export type SorterProps = {
   dir?: 'asc' | 'desc'
   onChange?: (dir: SorterProps['dir']) => void
 }
