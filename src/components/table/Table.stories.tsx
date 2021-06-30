@@ -64,7 +64,7 @@ Normal.args = {
     rowKey: 'key',
     onChange: (a, b) => console.log(a, b),
   },
-  loading: true,
+  loading: false,
 }
 
 export default {
