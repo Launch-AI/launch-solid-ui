@@ -1,8 +1,12 @@
 import { styled } from 'emotion-solid'
 import tw from 'twin.macro'
 
-const baseStyles = tw`relative inline-flex w-6 h-6 p-1`
+type StyledLabelProps = { block?: boolean }
 
-const StyledLabel = styled('label')(baseStyles)
+const baseStyles = tw`relative inline-flex`
+
+const blockStyles = ({ block }: StyledLabelProps) => block && tw`flex`
+
+const StyledLabel = styled('label')<StyledLabelProps>(baseStyles, blockStyles)
 
 export default StyledLabel

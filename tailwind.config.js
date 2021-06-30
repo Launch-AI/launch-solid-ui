@@ -24,12 +24,16 @@ module.exports = {
         },
         dark: {
           100: '#231F1F',
+          300: '#594E4E',
           400: '#877878',
           500: '#B2A1A1',
         },
       },
       borderRadius: {
         '3xl': '1.5rem',
+      },
+      fontSize: {
+        base: '0.9375rem',
       },
     },
   },
