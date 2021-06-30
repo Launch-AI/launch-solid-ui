@@ -3,6 +3,16 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      animation: {
+        'skeleton-loading': 'skeleton-loading 1.4s ease infinite',
+      },
+      backgroundImage: {
+        'gradient-skeleton-loading':
+          'linear-gradient(90deg,rgba(190,190,190,.2) 25%,rgba(129,129,129,.24) 37%,rgba(190,190,190,.2) 63%)',
+      },
+      backgroundSize: {
+        'skeleton-loading': '400% 100%',
+      },
       colors: {
         danger: {
           DEFAULT: '#FF464F',
@@ -44,6 +54,12 @@ module.exports = {
         'heading-4': ['2rem', '2.5rem'],
         'heading-5': ['1.5rem', '1.75rem'],
         'heading-6': ['1.1875rem', '1.5rem'],
+      },
+      keyframes: {
+        'skeleton-loading': {
+          '0%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0 50%' },
+        },
       },
       letterSpacing: {
         'heading-1': '-1.5px',
