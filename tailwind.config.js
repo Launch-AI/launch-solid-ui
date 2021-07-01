@@ -28,6 +28,26 @@ module.exports = {
           DEFAULT: '#F2A71B',
           dark: '#916108',
         },
+        green: {
+          light: '#D9F7BE',
+          DEFAULT: '#389E0D',
+        },
+        purple: {
+          light: '#EFDBFF',
+          DEFAULT: '#531DAB',
+        },
+        teal: {
+          light: '#B5F5EC',
+          DEFAULT: '#08979C',
+        },
+        brown: {
+          light: '#EBE4E4',
+          DEFAULT: '#B2A1A1',
+        },
+        grey: {
+          light: '#EBE4E4',
+          DEFAULT: '#F5F2F2',
+        },
         light: {
           100: '#EBE4E4',
           300: '#F5F2F2',
