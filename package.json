@@ -1,11 +1,29 @@
 {
-  "name": "launch-ui",
+  "name": "@launch-ai/solid-ui",
+  "author": "Launch AI Team",
+  "description": "A high performance UI library for Solid JS - based on the Launch Design principles.",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "module": "dist/index.js",
   "types": "dist/types.d.ts",
   "files": [
     "dist/**"
+  ],
+  "keywords": [
+    "solid",
+    "ui",
+    "components",
+    "library"
+  ],
+  "homepage": "https://github.com/Launch-AI/launch-solid-ui#readme",
+  "bugs": "https://github.com/Launch-AI/launch-solid-ui/issues",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Launch-AI/launch-solid-ui.git"
+  },
+  "license": "MIT",
+  "contributors": [
+    "Ari Seyhun <ariseyhun@live.com.au> (https://ariseyhun.com)"
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
