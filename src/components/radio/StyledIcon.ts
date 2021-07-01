@@ -7,7 +7,7 @@ type StyledRadioProps = IRadioProps & JSX.IntrinsicElements['span']
 
 const baseStyles: any = (props: StyledRadioProps) => [
   tw`relative inline-block w-5 h-5 rounded-xl border-2 border-solid border-primary`,
-  props.labelPosition === 'right' ? tw`mr-3.5` : tw`ml-3.5`,
+  props.label && [props.labelPosition === 'right' ? tw`mr-3.5` : tw`ml-3.5`],
   {
     '::after': tw`content absolute top-1/2 rounded-full left-1/2 w-9 h-9 bg-primary bg-opacity-20 transform -translate-x-1/2 -translate-y-1/2 scale-0 transition duration-300 ease-out`,
     ':hover::after': tw`transform -translate-x-1/2 -translate-y-1/2 scale-100`,

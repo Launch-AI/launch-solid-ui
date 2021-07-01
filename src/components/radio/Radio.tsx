@@ -37,7 +37,12 @@ const Radio: Component<IRadioProps> = (props) => {
         checked={isChecked()}
         disabled={props.disabled}
       />
-      <StyledIcon checked={isChecked()} disabled={props.disabled} />
+      <StyledIcon
+        checked={isChecked()}
+        disabled={props.disabled}
+        labelPosition={props.labelPosition}
+        label={props.label}
+      />
       {renderLabel(props.label && props.labelPosition === 'right')}
     </StyledLabel>
   )

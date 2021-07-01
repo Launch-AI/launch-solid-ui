@@ -5,6 +5,9 @@ const RadioTemplate: Story<IRadioProps> = (args) => <Radio {...args} />
 export const Normal = RadioTemplate.bind({})
 Normal.args = {
   label: 'Label',
+  checked: false,
+  disabled: false,
+  labelPosition: 'left',
 }
 
 export const Checked = RadioTemplate.bind({})
