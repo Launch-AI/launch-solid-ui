@@ -7,7 +7,7 @@ type StyledButtonProps = ButtonProps & {
   hasChildren?: boolean
 }
 
-const baseStyles = tw`inline-flex justify-center items-center font-medium border border-solid border-transparent rounded-xl cursor-pointer select-none transform duration-200 ease-out focus:outline-none active:scale-95`
+const baseStyles = tw`inline-flex justify-center items-center font-medium border border-solid border-transparent rounded-xl cursor-pointer select-none transform duration-200 ease-out outline-none active:scale-95`
 
 // Block styles
 const blockStyles = (props: StyledButtonProps) => props.block && tw`flex w-full`
