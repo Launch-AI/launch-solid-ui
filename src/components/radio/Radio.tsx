@@ -1,11 +1,11 @@
-import { Component, createSignal, Show } from 'solid-js'
+import { Component, createEffect, createSignal } from 'solid-js'
 
 import StyledIcon from './StyledIcon'
 import StyledInput from './StyledInput'
 import StyledLabel from './StyledRadio'
 
-export type IRadioProps = {
-  label?: any
+export type RadioProps = {
+  label?: JSX.Element | string
   labelPosition?: 'right' | 'left'
   checked?: boolean
   indeterminate?: boolean
@@ -14,36 +14,46 @@ export type IRadioProps = {
   onChange?: (checked: boolean) => void
 }
 
-const Radio: Component<IRadioProps> = (props) => {
-  const [isChecked, setIsChecked] = createSignal(props.checked || false)
+const Radio: Component<RadioProps> = (props) => {
+  const [isChecked, setIsChecked] = createSignal(false)
 
-  const handleChange = (e: any) => {
+  createEffect(() => {
+    if (props.checked !== null && props.checked !== undefined) {
+      setIsChecked(props.checked)
+    }
+  })
+
+  const handleChange = (ev: Event) => {
     if (props.disabled) return
-    const newChecked = (e.target as HTMLInputElement).checked
+    const newChecked = (ev.target as HTMLInputElement).checked
     setIsChecked(newChecked)
     props.onChange && props.onChange(newChecked)
   }
 
-  const renderLabel = (isVisible: boolean) => (
-    <Show when={isVisible}>{props.label}</Show>
-  )
+  const labelBefore =
+    props.label && props.labelPosition !== 'right' && props.label
+
+  const lableAfter =
+    props.label && props.labelPosition === 'right' && props.label
 
   return (
     <StyledLabel disabled={props.disabled}>
-      {renderLabel(props.label && props.labelPosition !== 'right')}
-      <StyledInput
-        type="radio"
-        onChange={handleChange}
-        checked={isChecked()}
-        disabled={props.disabled}
-      />
-      <StyledIcon
-        checked={isChecked()}
-        disabled={props.disabled}
-        labelPosition={props.labelPosition}
-        label={props.label}
-      />
-      {renderLabel(props.label && props.labelPosition === 'right')}
+      <>
+        {labelBefore}
+        <StyledInput
+          type="radio"
+          checked={isChecked()}
+          disabled={props.disabled}
+          onChange={handleChange}
+        />
+        <StyledIcon
+          checked={isChecked()}
+          disabled={props.disabled}
+          labelPosition={props.labelPosition}
+          label={props.label}
+        />
+        {lableAfter}
+      </>
     </StyledLabel>
   )
 }

@@ -1,11 +1,12 @@
 import { styled } from 'emotion-solid'
+import type { JSX } from 'solid-js'
 import tw from 'twin.macro'
 
-import type { IRadioProps } from './Radio'
+import type { RadioProps } from './Radio'
 
-type StyledRadioProps = IRadioProps & JSX.IntrinsicElements['span']
+type StyledRadioProps = RadioProps & JSX.IntrinsicElements['span']
 
-const baseStyles: any = (props: StyledRadioProps) => [
+const baseStyles = (props: StyledRadioProps) => [
   tw`relative inline-block w-5 h-5 rounded-xl border-2 border-solid border-primary`,
   props.label && [props.labelPosition === 'right' ? tw`mr-3.5` : tw`ml-3.5`],
   {
@@ -30,10 +31,10 @@ const disabledStyles = (props: StyledRadioProps) =>
     { '::after': tw`hidden` },
   ]
 
-const radioStyles = styled('span')<StyledRadioProps>(
+const StyledIcon = styled('span')<StyledRadioProps>(
   baseStyles,
   checkedStyles,
   disabledStyles
 )
 
-export default radioStyles
+export default StyledIcon

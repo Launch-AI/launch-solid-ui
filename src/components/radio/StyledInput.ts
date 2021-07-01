@@ -1,8 +1,11 @@
 import { styled } from 'emotion-solid'
+import type { JSX } from 'solid-js'
 import tw from 'twin.macro'
 
-type InputProps = JSX.IntrinsicElements['input']
+type StyledInputProps = JSX.IntrinsicElements['input']
 
-const StyledInput = tw`absolute w-0 h-0 opacity-0 ml-2`
+const baseStyles = tw`absolute w-0 h-0 opacity-0 ml-2`
 
-export default styled('input')<InputProps>(StyledInput)
+const StyledInput = styled('input')<StyledInputProps>(baseStyles)
+
+export default StyledInput
