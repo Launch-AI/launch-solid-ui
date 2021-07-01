@@ -2,9 +2,15 @@
 
 A UI library containing a set of beautiful Solid JS components.
 
+Storybook available at [launch-ui.netlify.app](https://launch-ui.netlify.app/).
+
 ## Installation
 
-_This project is not yet available on NPM._
+```bash
+npm install @launch-ai/solid-ui
+# or
+yarn add @launch-ai/solid-ui
+```
 
 ## Prerequisites
 
