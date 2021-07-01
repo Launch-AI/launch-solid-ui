@@ -29,7 +29,7 @@ const Radio: Component<IRadioProps> = (props) => {
   )
 
   return (
-    <StyledLabel>
+    <StyledLabel disabled={props.disabled}>
       {renderLabel(props.label && props.labelPosition !== 'right')}
       <StyledInput
         type="radio"

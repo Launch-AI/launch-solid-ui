@@ -1,10 +1,11 @@
-import { Component, createSignal } from 'solid-js'
+import { Component, createEffect, createSignal } from 'solid-js'
 
 import StyledCheckbox from './StyledCheckbox'
 import StyledHiddenCheckbox from './StyledHiddenCheckbox'
 import StyledLabel from './StyledLabel'
 
 export type CheckboxProps = {
+  block?: boolean
   label?: string
   checked?: boolean
   indeterminate?: boolean
@@ -13,28 +14,33 @@ export type CheckboxProps = {
 }
 
 const Checkbox: Component<CheckboxProps> = (props) => {
-  const { checked, indeterminate, disabled, onChange } = props
-  const [isChecked, setIsChecked] = createSignal(checked || false)
+  const [isChecked, setIsChecked] = createSignal(props.checked || false)
+
+  createEffect(() => {
+    if (props.checked != null) {
+      setIsChecked(props.checked)
+    }
+  })
 
   const handleChange = (ev: Event) => {
-    if (disabled) return
+    if (props.disabled) return
     const newChecked = (ev.target as HTMLInputElement).checked
     setIsChecked(newChecked)
-    onChange && onChange(newChecked)
+    props.onChange && props.onChange(newChecked)
   }
 
   return (
-    <StyledLabel>
+    <StyledLabel block={props.block}>
       <StyledHiddenCheckbox
         type="checkbox"
         checked={isChecked()}
-        disabled={disabled}
+        disabled={props.disabled}
         onChange={handleChange}
       />
       <StyledCheckbox
         checked={isChecked()}
-        indeterminate={indeterminate}
-        disabled={disabled}
+        indeterminate={props.indeterminate}
+        disabled={props.disabled}
       />
     </StyledLabel>
   )

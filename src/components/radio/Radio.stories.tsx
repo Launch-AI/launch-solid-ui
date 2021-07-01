@@ -18,6 +18,19 @@ LabelRight.args = {
   labelPosition: 'right',
 }
 
+export const Disabled = RadioTemplate.bind({})
+Disabled.args = {
+  disabled: true,
+  label: 'Label',
+}
+
+export const DisabledChecked = RadioTemplate.bind({})
+DisabledChecked.args = {
+  disabled: true,
+  checked: true,
+  label: 'Label',
+}
+
 export default {
   title: 'Radio',
   component: Radio,
