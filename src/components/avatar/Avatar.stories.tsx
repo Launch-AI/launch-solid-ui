@@ -33,4 +33,45 @@ Tertiary.args = {
 export default {
   title: 'Avatar',
   component: Avatar,
+  argTypes: {
+    avatarType: {
+      options: ['filled', 'filled-shadow', 'outlined', 'outlined-shadow'],
+      control: { type: 'select' },
+    },
+    shape: {
+      options: ['rounded', 'square'],
+      control: { type: 'select' },
+    },
+    color: {
+      options: [
+        'primary',
+        'secondary',
+        'green',
+        'teal',
+        'brown',
+        'grey',
+        'purple',
+      ],
+      control: { type: 'select' },
+    },
+    childType: {
+      options: ['avatar', 'image', 'character'],
+      control: { type: 'select' },
+    },
+    imagePath: {
+      type: { name: 'string', required: false },
+      defaultValue: '',
+      control: { type: 'text' },
+    },
+    alt: {
+      type: { name: 'string', required: false },
+      defaultValue: '',
+      control: { type: 'text' },
+    },
+    characters: {
+      type: { name: 'string', required: false },
+      defaultValue: '',
+      control: { type: 'text' },
+    },
+  },
 }
