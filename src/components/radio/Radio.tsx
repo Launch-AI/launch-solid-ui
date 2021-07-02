@@ -1,11 +1,12 @@
 import { Component, createEffect, createSignal } from 'solid-js'
+import type { JSX } from 'solid-js'
 
 import StyledIcon from './StyledIcon'
 import StyledInput from './StyledInput'
 import StyledLabel from './StyledRadio'
 
 export type RadioProps = {
-  label?: JSX.Element | string
+  label?: JSX.Element
   labelPosition?: 'right' | 'left'
   checked?: boolean
   indeterminate?: boolean

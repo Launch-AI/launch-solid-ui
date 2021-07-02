@@ -1,6 +1,6 @@
-import { Radio, IRadioProps } from '.'
+import { Radio, RadioProps } from '.'
 
-const RadioTemplate: Story<IRadioProps> = (args) => <Radio {...args} />
+const RadioTemplate: Story<RadioProps> = (args) => <Radio {...args} />
 
 export const Normal = RadioTemplate.bind({})
 Normal.args = {
