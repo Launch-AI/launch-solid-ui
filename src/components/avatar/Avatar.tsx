@@ -5,11 +5,11 @@ import withDefaults from '../../utils/with-defaults'
 import StyledAvatar from './StyledAvatar'
 
 export type Color =
+  | 'default'
   | 'grey'
   | 'purple'
   | 'green'
   | 'teal'
-  | 'brown'
   | 'primary'
   | 'secondary'
   | undefined

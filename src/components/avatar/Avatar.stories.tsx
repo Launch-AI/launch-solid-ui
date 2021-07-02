@@ -45,11 +45,11 @@ export default {
     },
     color: {
       options: [
+        'default',
         'primary',
         'secondary',
         'green',
         'teal',
-        'brown',
         'grey',
         'purple',
       ],

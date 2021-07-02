@@ -16,43 +16,43 @@ export type AvatarStyledProps = {
 const baseStyles = tw`w-20 h-20 flex justify-center items-center border-0 border-solid border-transparent text-white rounded-full text-base shadow-none`
 
 const backgroundStyles = ({ color, type }: AvatarStyledProps) => [
-  color === 'grey' && tw`bg-grey-light`,
+  color === 'default' && tw`bg-light-100`,
   color === 'green' && tw`bg-green-light`,
   color === 'purple' && tw`bg-purple-light`,
-  color === 'brown' && tw`bg-brown-light`,
+  color === 'grey' && tw`bg-grey-light`,
   color === 'teal' && tw`bg-teal-light`,
   type === 'filled' && [
-    color === 'primary' && tw`bg-primary`,
-    color === 'secondary' && tw`bg-secondary`,
+    color === 'primary' && tw`bg-blue`,
+    color === 'secondary' && tw`bg-orange`,
   ],
   type === 'outlined' && [
-    color === 'primary' && tw`bg-primary-light`,
-    color === 'secondary' && tw`bg-secondary-light`,
+    color === 'primary' && tw`bg-blue-light`,
+    color === 'secondary' && tw`bg-orange-light`,
   ],
 ]
 
 const borderStyles = ({ border, color, type }: AvatarStyledProps) => [
   border !== '0' && tw`border-2`,
   type === 'outlined' && [
-    color === 'grey' && tw`border-grey`,
+    color === 'default' && tw`border-light-100`,
     color === 'green' && tw`border-green`,
     color === 'purple' && tw`border-purple`,
-    color === 'brown' && tw`border-brown`,
-    color === 'primary' && tw`border-primary`,
-    color === 'secondary' && tw`border-secondary`,
+    color === 'grey' && tw`border-grey-dark`,
+    color === 'primary' && tw`border-blue`,
+    color === 'secondary' && tw`border-orange`,
     color === 'teal' && tw`border-teal`,
   ],
 ]
 
 const textStyles = ({ color, type }: AvatarStyledProps) => [
-  color === 'grey' && tw`text-grey`,
+  color === 'default' && tw`text-blue`,
   color === 'green' && tw`text-green`,
   color === 'purple' && tw`text-purple`,
-  color === 'brown' && tw`text-brown`,
+  color === 'grey' && tw`text-grey-dark`,
   color === 'teal' && tw`text-teal`,
   type === 'outlined' && [
-    color === 'primary' && tw`text-primary`,
-    color === 'secondary' && tw`text-secondary`,
+    color === 'primary' && tw`text-blue`,
+    color === 'secondary' && tw`text-orange`,
   ],
   type === 'filled' && [
     color === 'primary' && tw`text-white`,
