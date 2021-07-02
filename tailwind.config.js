@@ -45,8 +45,8 @@ module.exports = {
           DEFAULT: '#B2A1A1',
         },
         grey: {
-          light: '#EBE4E4',
-          DEFAULT: '#F5F2F2',
+          light: '#F5F2F2',
+          DEFAULT: '#EBE4E4',
         },
         light: {
           100: '#EBE4E4',

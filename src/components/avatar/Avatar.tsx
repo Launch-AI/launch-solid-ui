@@ -1,8 +1,5 @@
 import AvatarIcon from './AvatarIcon'
-import GetColors from './GetColors'
 import StyledAvatar from './StyledAvatar'
-
-const getColors = new GetColors()
 
 export type Color =
   | 'grey'
@@ -16,8 +13,11 @@ export type Color =
 
 export type Shape = 'rounded' | 'square'
 
+export type Type = 'filled' | 'outlined'
+
 export type AvatarProps = {
-  avatarType?: 'filled-shadow' | 'filled' | 'outlined' | 'outlined-shadow'
+  type?: Type
+  shadow?: boolean
   shape?: Shape
   color?: Color
   childType?: 'avatar' | 'image' | 'character'
@@ -26,60 +26,22 @@ export type AvatarProps = {
   characters?: string
 }
 
-export type AvatarStyledProps = {
-  childType?: AvatarProps['childType']
-  backgroundColor?: string
-  border?: string
-  borderColor?: string
-  shape?: AvatarProps['shape']
-  imageColor?: string
-  shadow?: boolean
-}
-
 export const Avatar = (props: AvatarProps) => {
-  let backgroundColor = 'primary'
-  let border = '0px'
-  let borderColor = 'primary'
-  let imageColor = 'white'
-  let shadow = false
-
-  if (
-    props.avatarType == 'outlined-shadow' ||
-    props.avatarType == 'filled-shadow'
-  ) {
-    shadow = true
-  }
-
-  if (props.avatarType == 'filled' || props.avatarType == 'filled-shadow') {
-    ;[backgroundColor, imageColor, borderColor] = getColors.getFilledColor(
-      props.color
-    )
-  }
-
-  if (props.avatarType == 'outlined' || props.avatarType == 'outlined-shadow') {
-    border = '2px'
-    ;[backgroundColor, imageColor, borderColor] = getColors.getOutlinedColor(
-      props.color
-    )
-  }
-
   return (
     <div>
       <StyledAvatar
         childType={props.childType}
-        backgroundColor={backgroundColor}
-        border={border}
-        borderColor={borderColor}
+        type={props.type}
+        color={props.color}
         shape={props.shape}
-        imageColor={imageColor}
-        shadow={shadow}
+        shadow={props.shadow}
       >
         {getImage(
           props.childType,
           props.imagePath,
           props.characters,
           props.alt,
-          imageColor
+          getImageColor(props.color, props.type as Type)
         )}
       </StyledAvatar>
     </div>
@@ -102,4 +64,43 @@ function getImage(
   }
 
   return icon
+}
+
+function getImageColor(color: Color, type: Type) {
+  let imageColor = 'white'
+  switch (color) {
+    case 'grey':
+      imageColor = '#0099FF'
+      break
+
+    case 'purple':
+      imageColor = '#531DAB'
+      break
+
+    case 'green':
+      imageColor = '#389E0D'
+      break
+
+    case 'teal':
+      imageColor = '#08979C'
+      break
+
+    case 'brown':
+      imageColor = '#B2A1A1'
+      break
+
+    case 'primary':
+      imageColor = 'white'
+      break
+
+    case 'secondary':
+      imageColor = 'white'
+      break
+
+    default:
+      imageColor = '#0099FF'
+      break
+  }
+
+  return imageColor
 }
