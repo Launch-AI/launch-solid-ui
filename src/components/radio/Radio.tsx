@@ -9,9 +9,7 @@ export type RadioProps = {
   label?: JSX.Element
   labelPosition?: 'right' | 'left'
   checked?: boolean
-  indeterminate?: boolean
   disabled?: boolean
-  className?: string
   onChange?: (checked: boolean) => void
 }
 
@@ -31,11 +29,9 @@ const Radio: Component<RadioProps> = (props) => {
     props.onChange && props.onChange(newChecked)
   }
 
-  const labelBefore =
-    props.label && props.labelPosition !== 'right' && props.label
+  const labelBefore = props.labelPosition !== 'right' && props.label
 
-  const lableAfter =
-    props.label && props.labelPosition === 'right' && props.label
+  const lableAfter = props.labelPosition === 'right' && props.label
 
   return (
     <StyledLabel disabled={props.disabled}>
