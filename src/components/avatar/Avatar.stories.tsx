@@ -1,4 +1,5 @@
 import { Avatar, AvatarProps } from './Avatar'
+// @ts-ignore
 import imageFile from './static/image.svg'
 
 const TypeTemplate: Story<AvatarProps> = (args) => <Avatar {...args}></Avatar>
