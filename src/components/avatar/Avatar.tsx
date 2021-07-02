@@ -1,4 +1,4 @@
-import AvatarIcon from './AvatarIcon'
+import UserIcon from '../../icons/UserIcon'
 import StyledAvatar from './StyledAvatar'
 
 export type Color =
@@ -36,12 +36,7 @@ export const Avatar = (props: AvatarProps) => {
         imagePath={props.imagePath}
         characters={props.characters}
       >
-        {getImage(
-          props.imagePath,
-          props.characters,
-          props.alt,
-          getImageColor(props.color)
-        )}
+        {getImage(props.imagePath, props.characters, props.alt)}
       </StyledAvatar>
     </div>
   )
@@ -50,10 +45,9 @@ export const Avatar = (props: AvatarProps) => {
 function getImage(
   imagePath: AvatarProps['imagePath'],
   characters: AvatarProps['characters'],
-  alt: AvatarProps['alt'],
-  imageColor: string
+  alt: AvatarProps['alt']
 ) {
-  let icon = <AvatarIcon color={imageColor} />
+  let icon = <UserIcon />
   if (imagePath !== '' && imagePath !== undefined) {
     icon = <img width="100%" src={imagePath} alt={alt || 'Avatar'} />
   } else if (characters !== '' && characters !== undefined) {
@@ -61,43 +55,4 @@ function getImage(
   }
 
   return icon
-}
-
-function getImageColor(color: Color) {
-  let imageColor = 'white'
-  switch (color) {
-    case 'grey':
-      imageColor = '#0099FF'
-      break
-
-    case 'purple':
-      imageColor = '#531DAB'
-      break
-
-    case 'green':
-      imageColor = '#389E0D'
-      break
-
-    case 'teal':
-      imageColor = '#08979C'
-      break
-
-    case 'brown':
-      imageColor = '#B2A1A1'
-      break
-
-    case 'primary':
-      imageColor = 'white'
-      break
-
-    case 'secondary':
-      imageColor = 'white'
-      break
-
-    default:
-      imageColor = '#0099FF'
-      break
-  }
-
-  return imageColor
 }
