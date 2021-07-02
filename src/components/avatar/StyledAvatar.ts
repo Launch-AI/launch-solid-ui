@@ -44,6 +44,22 @@ const borderStyles = ({ border, color, type }: AvatarStyledProps) => [
   ],
 ]
 
+const textStyles = ({ color, type }: AvatarStyledProps) => [
+  color === 'grey' && tw`text-grey`,
+  color === 'green' && tw`text-green`,
+  color === 'purple' && tw`text-purple`,
+  color === 'brown' && tw`text-brown`,
+  color === 'teal' && tw`text-teal`,
+  type === 'outlined' && [
+    color === 'primary' && tw`text-primary`,
+    color === 'secondary' && tw`text-secondary`,
+  ],
+  type === 'filled' && [
+    color === 'primary' && tw`text-white`,
+    color === 'secondary' && tw`text-white`,
+  ],
+]
+
 const radiusStyles = ({ shape }: AvatarStyledProps) =>
   shape === 'square' && tw`rounded-2xl`
 
@@ -63,6 +79,7 @@ const StyledAvatar = styled('div')<AvatarStyledProps>(
   baseStyles,
   backgroundStyles,
   borderStyles,
+  textStyles,
   radiusStyles,
   fontStyles,
   shadowStyles

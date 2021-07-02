@@ -10,16 +10,14 @@ Primary.args = {
   shape: 'rounded',
   color: 'purple',
   shadow: false,
-  childType: 'avatar',
 }
 
 export const Secondary = TypeTemplate.bind({})
 Secondary.args = {
   type: 'outlined',
   shape: 'square',
-  color: 'secondary',
+  color: 'green',
   shadow: true,
-  childType: 'character',
   characters: 'AS',
 }
 
@@ -27,9 +25,8 @@ export const Tertiary = TypeTemplate.bind({})
 Tertiary.args = {
   type: 'outlined',
   shape: 'rounded',
-  color: 'green',
+  color: 'primary',
   shadow: true,
-  childType: 'image',
   imagePath: imageFile,
   alt: 'Avatar',
 }
@@ -60,10 +57,6 @@ export default {
     },
     shadow: {
       control: { type: 'boolean' },
-    },
-    childType: {
-      options: ['avatar', 'image', 'character'],
-      control: { type: 'select' },
     },
     imagePath: {
       type: { name: 'string', required: false },

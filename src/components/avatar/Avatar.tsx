@@ -17,9 +17,9 @@ export type Type = 'filled' | 'outlined'
 
 export type AvatarProps = {
   type?: Type
-  shadow?: boolean
   shape?: Shape
   color?: Color
+  shadow?: boolean
   childType?: 'avatar' | 'image' | 'character'
   imagePath?: string
   alt?: string
