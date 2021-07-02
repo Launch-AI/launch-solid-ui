@@ -1,4 +1,4 @@
-import { Avatar, AvatarProps } from './Avatar'
+import Avatar, { AvatarProps } from './Avatar'
 // @ts-ignore
 import imageFile from './static/image.svg'
 
