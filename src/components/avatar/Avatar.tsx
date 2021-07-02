@@ -30,18 +30,18 @@ export const Avatar = (props: AvatarProps) => {
   return (
     <div>
       <StyledAvatar
-        childType={props.childType}
         type={props.type}
         color={props.color}
         shape={props.shape}
         shadow={props.shadow}
+        imagePath={props.imagePath}
+        characters={props.characters}
       >
         {getImage(
-          props.childType,
           props.imagePath,
           props.characters,
           props.alt,
-          getImageColor(props.color, props.type as Type)
+          getImageColor(props.color)
         )}
       </StyledAvatar>
     </div>
@@ -49,24 +49,22 @@ export const Avatar = (props: AvatarProps) => {
 }
 
 function getImage(
-  childType: AvatarProps['childType'],
   imagePath: AvatarProps['imagePath'],
   characters: AvatarProps['characters'],
   alt: AvatarProps['alt'],
   imageColor: string
 ) {
   let icon = <AvatarIcon color={imageColor} />
-  if (childType == 'image') {
+  if (imagePath !== '' && imagePath !== undefined) {
     icon = <img width="100%" src={imagePath} alt={alt || 'Avatar'} />
-  }
-  if (childType == 'character') {
+  } else if (characters !== '' && characters !== undefined) {
     icon = characters
   }
 
   return icon
 }
 
-function getImageColor(color: Color, type: Type) {
+function getImageColor(color: Color) {
   let imageColor = 'white'
   switch (color) {
     case 'grey':
