@@ -7,9 +7,9 @@ Storybook available at [launch-ui.netlify.app](https://launch-ui.netlify.app/).
 ## Installation
 
 ```bash
-npm install @launch-ai/solid-ui
+npm install @launch/solid
 # or
-yarn add @launch-ai/solid-ui
+yarn add @launch/solid
 ```
 
 ## Prerequisites

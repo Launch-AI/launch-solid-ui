@@ -1,5 +1,5 @@
 {
-  "name": "@launch-ai/solid-ui",
+  "name": "@launch/solid",
   "author": "Launch AI Team",
   "description": "A high performance UI library for Solid JS - based on the Launch Design principles.",
   "version": "0.1.1",
