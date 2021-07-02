@@ -1,4 +1,7 @@
+import type { Component, JSX } from 'solid-js'
+
 import UserIcon from '../../icons/UserIcon'
+import withDefaults from '../../utils/with-defaults'
 import StyledAvatar from './StyledAvatar'
 
 export type Color =
@@ -25,7 +28,18 @@ export type AvatarProps = {
   characters?: string
 }
 
-export const Avatar = (props: AvatarProps) => {
+const Avatar: Component<AvatarProps> = (props) => {
+  let icon: JSX.Element
+  if (props.imagePath) {
+    icon = (
+      <img width="100%" src={props.imagePath} alt={props.alt || 'Avatar'} />
+    )
+  } else if (props.characters) {
+    icon = props.characters
+  } else {
+    icon = <UserIcon />
+  }
+
   return (
     <div>
       <StyledAvatar
@@ -36,23 +50,14 @@ export const Avatar = (props: AvatarProps) => {
         imagePath={props.imagePath}
         characters={props.characters}
       >
-        {getImage(props.imagePath, props.characters, props.alt)}
+        {icon}
       </StyledAvatar>
     </div>
   )
 }
 
-function getImage(
-  imagePath: AvatarProps['imagePath'],
-  characters: AvatarProps['characters'],
-  alt: AvatarProps['alt']
-) {
-  let icon = <UserIcon />
-  if (imagePath !== '' && imagePath !== undefined) {
-    icon = <img width="100%" src={imagePath} alt={alt || 'Avatar'} />
-  } else if (characters !== '' && characters !== undefined) {
-    icon = characters
-  }
-
-  return icon
-}
+export default withDefaults(Avatar, {
+  type: 'filled',
+  shape: 'square',
+  color: 'primary',
+})
