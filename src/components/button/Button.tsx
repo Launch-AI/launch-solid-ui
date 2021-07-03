@@ -2,40 +2,40 @@ import type { Component, JSX } from 'solid-js'
 
 import withDefaults from '../../utils/with-defaults'
 import StyledButton from './StyledButton'
-import StyledIcon from './StyledIcon'
+import * as DefaultStyle from './StyledIcon'
 
 export type ButtonProps = {
   block?: boolean
   variant?: 'default' | 'primary' | 'secondary' | 'ghost'
   type?: 'filled' | 'outlined' | 'text'
-  size?: 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large'
-  iconPosition?: 'before' | 'after'
-  shape?: 'rounded' | 'circle'
   disabled?: boolean
   onClick?: JSX.IntrinsicElements['button']['onClick']
-} & (
-  | // Must specify icon, children or both - but never none of them
-  {
-      icon: JSX.Element
-      children?: never
-    }
-  | { icon?: never; children: any }
-  | { icon: JSX.Element; children: any }
-)
-
-const Button: Component<ButtonProps> = (props) => {
-  const { size, icon, iconPosition, children } = props
-
-  const beforeIcon = iconPosition === 'before' && icon && (
-    <StyledIcon position={children && 'before'} size={size}>
-      {icon}
-    </StyledIcon>
+  /** a function to get css properties */
+  getCSSProps?: (props?: ButtonProps | DefaultStyle.Props) => JSX.CSSProperties
+}
+/** for backward compatibility */
+& DefaultStyle.Props &
+  (
+    | // Must specify icon, children or both - but never none of them
+    {
+        icon: JSX.Element
+        children?: never
+      }
+    | { icon?: never; children: any }
+    | { icon: JSX.Element; children: any }
   )
 
-  const afterIcon = iconPosition === 'after' && icon && (
-    <StyledIcon position={children && 'after'} size={size}>
-      {icon}
-    </StyledIcon>
+const Button: Component<ButtonProps> = (props) => {
+  const { icon, children, getCSSProps = DefaultStyle.getCSSProps } = props
+
+  const cssProps = getCSSProps(props)
+
+  const beforeIcon = props.iconPosition === 'before' && icon && (
+    <span style={{ ...cssProps }}>{icon}</span>
+  )
+
+  const afterIcon = props.iconPosition === 'after' && icon && (
+    <span style={{ ...cssProps }}>{icon}</span>
   )
 
   return (
