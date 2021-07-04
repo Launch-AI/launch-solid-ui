@@ -2,10 +2,11 @@ import { Component, createEffect, createSignal, Show, For } from 'solid-js'
 
 import ChevronLeft from '../../icons/ChevronLeft'
 import ChevronRight from '../../icons/ChevronRight'
-import { Button, ButtonProps } from '../button'
+import { Button } from '../button'
 import StyledContainer from './StyledContainer'
 
 export type PaginationProps = {
+  class?: string
   currentPage?: number
   pages: number
   onChange?: (newPage: number) => void
@@ -42,7 +43,7 @@ const Pagination: Component<PaginationProps> = (props) => {
   }
 
   return (
-    <StyledContainer>
+    <StyledContainer class={props.class}>
       <Button
         variant="default"
         shape="circle"

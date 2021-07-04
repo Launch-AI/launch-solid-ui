@@ -4,6 +4,7 @@ import withDefaults from '../../utils/with-defaults'
 import StyledHeading from './StyledHeading'
 
 export type HeadingProps = {
+  class?: string
   level?: 1 | 2 | 3 | 4 | 5 | 6
   weight?: 'light' | 'normal' | 'medium' | 'bold'
 }
@@ -12,7 +13,7 @@ const Heading: Component<HeadingProps> = (props) => {
   const component = `h${props.level || 1}`
 
   return (
-    <StyledHeading as={component} {...props}>
+    <StyledHeading as={component} class={props.class} {...props}>
       {props.children}
     </StyledHeading>
   )

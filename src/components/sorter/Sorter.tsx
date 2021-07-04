@@ -1,15 +1,16 @@
-import { createEffect, createSignal } from 'solid-js'
+import { Component, createEffect, createSignal } from 'solid-js'
 
 import ArrowIcon from '../../icons/ArrowIcon'
 import StyledArrow from './StyledArrow'
 import StyledContainer from './StyledContainer'
 
 export type SorterProps = {
+  class?: string
   dir?: 'asc' | 'desc'
   onChange?: (dir: SorterProps['dir']) => void
 }
 
-function Sorter(props: SorterProps) {
+const Sorter: Component<SorterProps> = (props) => {
   const [dir, setDir] = createSignal(props.dir)
 
   createEffect(() => {
@@ -34,7 +35,7 @@ function Sorter(props: SorterProps) {
   }
 
   return (
-    <StyledContainer onClick={handleClick}>
+    <StyledContainer class={props.class} onClick={handleClick}>
       <StyledArrow active={dir() === 'asc'} direction="up">
         <ArrowIcon />
       </StyledArrow>

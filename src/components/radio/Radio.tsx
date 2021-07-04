@@ -6,6 +6,7 @@ import StyledInput from './StyledInput'
 import StyledLabel from './StyledRadio'
 
 export type RadioProps = {
+  class?: string
   label?: JSX.Element
   labelPosition?: 'right' | 'left'
   checked?: boolean
@@ -34,7 +35,7 @@ const Radio: Component<RadioProps> = (props) => {
   const lableAfter = props.labelPosition === 'right' && props.label
 
   return (
-    <StyledLabel disabled={props.disabled}>
+    <StyledLabel class={props.class} disabled={props.disabled}>
       <>
         {labelBefore}
         <StyledInput

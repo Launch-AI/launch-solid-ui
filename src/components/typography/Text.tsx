@@ -4,6 +4,7 @@ import withDefaults from '../../utils/with-defaults'
 import StyledText from './StyledText'
 
 export type TextProps = {
+  class?: string
   type?: 'normal' | 'large' | 'caption' | 'overline'
   weight?: 'light' | 'normal' | 'medium' | 'bold'
   underline?: boolean
@@ -11,7 +12,11 @@ export type TextProps = {
 }
 
 const Text: Component<TextProps> = (props) => {
-  return <StyledText {...props}>{props.children}</StyledText>
+  return (
+    <StyledText {...props} class={props.class}>
+      {props.children}
+    </StyledText>
+  )
 }
 
 export default withDefaults(Text, {
