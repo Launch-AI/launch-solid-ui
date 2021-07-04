@@ -43,21 +43,32 @@ Styling is done with [Emotion](https://emotion.sh/) and [twin.macro](https://git
 
 Example:
 
+<!-- prettier-ignore -->
 ```tsx
 import tw from 'twin.macro'
 import { styled } from './src/utils/styled'
-type ButtonProps = { block: boolean; children: any }
+
+type ButtonProps = { block: boolean }
+
 type StyledButtonProps = ButtonProps
+
 const baseStyles = tw`border border-black px-4 py-2`
+
 const blockStyles = ({ block }: StyledButtonProps) => block && tw`block w-full`
-const StyledButton = styled<StyledButtonProps>('button')([
+
+const StyledButton = styled('button')<StyledButtonProps>(
   baseStyles,
   blockStyles,
-])
-function Button(props: ButtonProps) {
-  const { children } = props
-  return <StyledButton {...props}>{children}</StyledButton>
+)
+
+const Button: Component<ButtonProps> = (props) => {
+  return (
+    <StyledButton block={props.block}>
+      {props.children}
+    </StyledButton>
+  )
 }
+
 export default Button
 ```
 

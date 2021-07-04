@@ -5,6 +5,7 @@ import StyledButton from './StyledButton'
 import StyledIcon from './StyledIcon'
 
 export type ButtonProps = {
+  class?: string
   block?: boolean
   variant?: 'default' | 'primary' | 'secondary' | 'ghost'
   type?: 'filled' | 'outlined' | 'text'
@@ -39,7 +40,7 @@ const Button: Component<ButtonProps> = (props) => {
   )
 
   return (
-    <StyledButton {...props} hasChildren={!!children}>
+    <StyledButton {...props} class={props.class} hasChildren={!!children}>
       {beforeIcon}
       {children}
       {afterIcon}

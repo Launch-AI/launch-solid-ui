@@ -10,11 +10,11 @@ type Option = {
 }
 
 export type RadioGroupProps = {
-  onChange?: (checked: boolean) => void
   options: Option[]
   value?: string
   inline?: boolean
   disabled?: boolean
+  onChange?: (checked: boolean) => void
 }
 
 const RadioGroup: Component<RadioGroupProps> = (props) => {

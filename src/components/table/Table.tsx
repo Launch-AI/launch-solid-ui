@@ -1,4 +1,4 @@
-import { createEffect, For, JSX, Show } from 'solid-js'
+import { Component, createEffect, For, JSX, Show } from 'solid-js'
 import { createStore } from 'solid-js/store'
 
 import { Checkbox } from '../checkbox'
@@ -26,6 +26,7 @@ export type Column<Record> = {
 }
 
 export type TableProps<Record> = {
+  class?: string
   block?: boolean
   columns: Column<Record>[]
   data: Record[]
@@ -33,7 +34,7 @@ export type TableProps<Record> = {
   loading?: boolean
 }
 
-function Table<Record>(props: TableProps<Record>) {
+function Table<Record extends unknown>(props: TableProps<Record>) {
   const [rows, setRows] = createStore({
     selected: new Set(props.rowSelection?.selectedRows || []),
     sorted: props.data,
@@ -203,29 +204,27 @@ function Table<Record>(props: TableProps<Record>) {
   )
 
   return (
-    <>
-      <StyledTable {...props}>
-        {tableHead}
-        <Show when={props.loading} fallback={tableBody}>
-          <tbody>
-            <For each={new Array(3)}>
-              {() => (
-                <StyledTableRow>
-                  <StyledTableData
-                    colSpan={
-                      props.columns.length +
-                      (props.rowSelection?.type === 'checkbox' ? 1 : 0)
-                    }
-                  >
-                    <Skeleton rows={1} rounded />
-                  </StyledTableData>
-                </StyledTableRow>
-              )}
-            </For>
-          </tbody>
-        </Show>
-      </StyledTable>
-    </>
+    <StyledTable {...props} class={props.class}>
+      {tableHead}
+      <Show when={props.loading} fallback={tableBody}>
+        <tbody>
+          <For each={new Array(3)}>
+            {() => (
+              <StyledTableRow>
+                <StyledTableData
+                  colSpan={
+                    props.columns.length +
+                    (props.rowSelection?.type === 'checkbox' ? 1 : 0)
+                  }
+                >
+                  <Skeleton rows={1} rounded />
+                </StyledTableData>
+              </StyledTableRow>
+            )}
+          </For>
+        </tbody>
+      </Show>
+    </StyledTable>
   )
 }
 

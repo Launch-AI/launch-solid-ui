@@ -19,6 +19,7 @@ export type Shape = 'rounded' | 'square'
 export type Type = 'filled' | 'outlined'
 
 export type AvatarProps = {
+  class?: string
   type?: Type
   shape?: Shape
   color?: Color
@@ -41,18 +42,17 @@ const Avatar: Component<AvatarProps> = (props) => {
   }
 
   return (
-    <div>
-      <StyledAvatar
-        type={props.type}
-        color={props.color}
-        shape={props.shape}
-        shadow={props.shadow}
-        imagePath={props.imagePath}
-        characters={props.characters}
-      >
-        {icon}
-      </StyledAvatar>
-    </div>
+    <StyledAvatar
+      class={props.class}
+      type={props.type}
+      color={props.color}
+      shape={props.shape}
+      shadow={props.shadow}
+      imagePath={props.imagePath}
+      characters={props.characters}
+    >
+      {icon}
+    </StyledAvatar>
   )
 }
 

@@ -5,6 +5,7 @@ import StyledContainer from './StyledContainer'
 import StyledSkeletonRow from './StyledSkeletonRow'
 
 export type SkeletonProps = {
+  class?: string
   rounded?: boolean
   rows?: number
 }
@@ -24,7 +25,7 @@ const Skeleton: Component<SkeletonProps> = (props) => {
           }
         `}
       </style>
-      <StyledContainer>
+      <StyledContainer class={props.class}>
         <For each={new Array(props.rows)}>
           {() => <StyledSkeletonRow {...props} />}
         </For>

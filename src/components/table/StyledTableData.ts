@@ -1,7 +1,5 @@
 import { styled } from 'emotion-solid'
-import tw, { theme } from 'twin.macro'
-
-console.log(theme('minHeight'))
+import tw from 'twin.macro'
 
 type StyledTableDataProps = {
   bordered?: boolean

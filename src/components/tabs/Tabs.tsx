@@ -6,6 +6,7 @@ import {
   createSignal,
   createMemo,
   Accessor,
+  Component,
 } from 'solid-js'
 
 import StyledTabs from './StyledTabs'
@@ -13,12 +14,12 @@ import Tab from './Tab'
 import { default as TabPane, TabPaneProps } from './TabPane'
 
 export type TabsProps = {
+  class?: string
   activeKey?: string
   onChange?: (newKey: string) => void
-  children?: JSX.Element[]
 }
 
-const Tabs = (props: TabsProps) => {
+const Tabs: Component<TabsProps> = (props) => {
   const [activeKey, setActiveKey] = createSignal(props.activeKey)
   const tabs = createMemo(() => {
     const children = (props.children as unknown) as Accessor<TabPaneProps>[]
@@ -39,7 +40,7 @@ const Tabs = (props: TabsProps) => {
   })
 
   return (
-    <div>
+    <div class={props.class}>
       <StyledTabs>
         <For each={tabs()}>{(tab) => tab}</For>
       </StyledTabs>

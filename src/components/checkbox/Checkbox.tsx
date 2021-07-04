@@ -5,6 +5,7 @@ import StyledHiddenCheckbox from './StyledHiddenCheckbox'
 import StyledLabel from './StyledLabel'
 
 export type CheckboxProps = {
+  class?: string
   block?: boolean
   label?: string
   checked?: boolean
@@ -30,7 +31,7 @@ const Checkbox: Component<CheckboxProps> = (props) => {
   }
 
   return (
-    <StyledLabel block={props.block}>
+    <StyledLabel class={props.class} block={props.block}>
       <StyledHiddenCheckbox
         type="checkbox"
         checked={isChecked()}
