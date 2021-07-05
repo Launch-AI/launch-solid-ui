@@ -80,6 +80,7 @@ module.exports = {
         'heading-4': ['2rem', '2.5rem'],
         'heading-5': ['1.5rem', '1.75rem'],
         'heading-6': ['1.1875rem', '1.5rem'],
+        xxs: '0.625rem',
       },
       keyframes: {
         'skeleton-loading': {
