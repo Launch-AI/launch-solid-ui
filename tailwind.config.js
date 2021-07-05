@@ -31,22 +31,27 @@ module.exports = {
         blue: {
           light: '#E5F5FF',
           DEFAULT: '#0099FF',
+          dark: '#004F83',
         },
         orange: {
           light: '#FFF8ED',
           DEFAULT: '#F2A71B',
+          dark: '#7A3700',
         },
         green: {
           light: '#D9F7BE',
           DEFAULT: '#389E0D',
+          dark: '#266B09',
         },
         purple: {
           light: '#EFDBFF',
           DEFAULT: '#531DAB',
+          dark: '#3A1478',
         },
         teal: {
           light: '#B5F5EC',
           DEFAULT: '#08979C',
+          dark: '#056569',
         },
         grey: {
           light: '#EBE4E4',
