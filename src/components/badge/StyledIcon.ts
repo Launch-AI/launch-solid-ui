@@ -40,7 +40,7 @@ const iconPositionStyles = ({
       badgePlacement === 'bottom-right' && tw`top-auto -bottom-px`,
     ],
   badgeType && [
-    tw`-top-1.5 -right-1.5 px-1`,
+    tw`-top-1.5 -right-1.5`,
     badgePlacement === 'top-left' && tw`-left-1.5 right-auto`,
     badgePlacement === 'bottom-left' &&
       tw`-left-1.5 right-auto top-auto -bottom-1.5`,
@@ -52,6 +52,7 @@ const dotStyles = ({
   count,
   shape,
   badgePlacement = 'top-right',
+  badgeType,
 }: StyledIconProps) => [
   !count && tw`h-2.5 w-2.5 top-0.5 right-0.5`,
   !count &&
@@ -69,6 +70,14 @@ const dotStyles = ({
       badgePlacement === 'bottom-left' &&
         tw`left-0.5 right-auto top-auto bottom-0.5`,
       badgePlacement === 'bottom-right' && tw`top-auto bottom-0.5`,
+    ],
+  !count &&
+    badgeType && [
+      tw`-top-1 -right-1`,
+      badgePlacement === 'top-left' && tw`-left-1 right-auto`,
+      badgePlacement === 'bottom-left' &&
+        tw`-left-1 right-auto top-auto -bottom-1`,
+      badgePlacement === 'bottom-right' && tw`top-auto -bottom-1`,
     ],
 ]
 
