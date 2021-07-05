@@ -81,8 +81,13 @@ const dotStyles = ({
     ],
 ]
 
-const dotWidthStyles = ({ count }: StyledIconProps) => [
-  count && count > 10 && tw`w-auto px-1 -right-2`,
+const dotWidthStyles = ({ count, badgePlacement }: StyledIconProps) => [
+  count &&
+    count > 10 && [
+      tw`w-auto px-1 -right-2 left-auto`,
+      ['bottom-left', 'top-left'].includes(badgePlacement!) &&
+        tw`-left-2 right-auto`,
+    ],
 ]
 
 const StyledIcon = styled('span')<StyledIconProps>(
