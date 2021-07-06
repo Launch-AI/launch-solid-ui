@@ -7,22 +7,26 @@ const TabsTemplate: Story<TagProps> = (args) => <Tag {...args}>Enabled</Tag>
 export const Normal = TabsTemplate.bind({})
 Normal.args = {
   color: 'primary',
+  size: 'default',
 }
 
 export const Disabled = TabsTemplate.bind({})
 Disabled.args = {
   disabled: true,
+  size: 'default',
 }
 
 export const WithIconBefore = TabsTemplate.bind({})
 WithIconBefore.args = {
   color: 'primary',
+  size: 'default',
   iconBefore: <CancelIcon />,
 }
 
 export const withIconAfter = TabsTemplate.bind({})
 withIconAfter.args = {
   color: 'primary',
+  size: 'default',
   iconAfter: <CancelIcon />,
 }
 
@@ -46,6 +50,10 @@ export default {
         'primary',
         'secondary',
       ],
+      control: { type: 'select' },
+    },
+    size: {
+      options: ['default', 'small'],
       control: { type: 'select' },
     },
   },

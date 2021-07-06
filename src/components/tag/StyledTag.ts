@@ -31,7 +31,7 @@ const disabledStyles = ({ disabled }: StyledTagProps) => [
 ]
 
 const smallStyles = ({ size }: StyledTagProps) =>
-  size === 'small' && tw`text-xs h-6 px-5`
+  size === 'small' && tw`text-xs h-6 px-2.5`
 
 const StyledTag = styled('div')<StyledTagProps>(
   baseStyles,
