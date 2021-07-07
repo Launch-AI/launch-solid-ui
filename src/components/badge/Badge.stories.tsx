@@ -1,6 +1,5 @@
 import { Badge, BadgeProps } from '.'
 import EmailIcon from '../../icons/EmailIcon'
-import UserIcon from '../../icons/UserIcon'
 import { Avatar } from '../avatar'
 
 const BadgeTemplate: Story<BadgeProps> = (args) => <Badge {...args} />
