@@ -2,6 +2,8 @@
 
 A UI library containing a set of beautiful Solid JS components.
 
+## [Join Solid UI Discord channel](https://discord.gg/yEU3YUjDQU)
+
 Storybook available at [launch-ui.netlify.app](https://launch-ui.netlify.app/).
 
 ## Installation
@@ -122,3 +124,6 @@ Additional hooks can be added with:
 ```bash
 npx husky add .husky/pre-commit "yarn test"
 ```
+
+
+## [Join Solid UI Discord channel](https://discord.gg/yEU3YUjDQU)
