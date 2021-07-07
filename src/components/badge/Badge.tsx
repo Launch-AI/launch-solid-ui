@@ -1,7 +1,7 @@
 import { Component, Show } from 'solid-js'
 import type { JSX } from 'solid-js'
 
-import StyledBadge from './StyledBadge'
+import StyledContainer from './StyledContainer'
 import StyledIcon from './StyledIcon'
 
 export type Color =
@@ -20,19 +20,15 @@ export type BadgePlacement =
   | 'bottom-left'
   | 'bottom-right'
 
-export type Shape = 'rounded' | 'square'
-
-type badgeType = 'icon'
-
 export type BadgeProps = {
   count?: number
   countLimit?: number
   color?: Color
-  shape?: Shape
   children?: JSX.Element
   badgeColor?: Color
   badgePlacement?: BadgePlacement
-  badgeType?: badgeType
+  offsetX?: number
+  offsetY?: number
 }
 
 const Badge: Component<BadgeProps> = (props) => {
@@ -40,12 +36,12 @@ const Badge: Component<BadgeProps> = (props) => {
   const limit = props.count! > countLimit ? `${countLimit}+` : props.count
 
   return (
-    <StyledBadge {...props}>
+    <StyledContainer {...props}>
       <StyledIcon {...props}>
         <Show when={props.count}>{limit}</Show>
       </StyledIcon>
       {props.children}
-    </StyledBadge>
+    </StyledContainer>
   )
 }
 

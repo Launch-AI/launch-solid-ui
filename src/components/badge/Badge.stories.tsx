@@ -1,6 +1,7 @@
 import { Badge, BadgeProps } from '.'
 import EmailIcon from '../../icons/EmailIcon'
 import UserIcon from '../../icons/UserIcon'
+import { Avatar } from '../avatar'
 
 const BadgeTemplate: Story<BadgeProps> = (args) => <Badge {...args} />
 
@@ -8,39 +9,54 @@ export const Normal = BadgeTemplate.bind({})
 Normal.args = {
   count: 1,
   badgeColor: 'green',
-  children: <UserIcon />,
-  shape: 'rounded',
+  children: (
+    <Avatar type="filled" shape="rounded" color="purple" shadow={false} />
+  ),
+  offsetX: 9,
+  offsetY: 7,
 }
 
 export const Square = BadgeTemplate.bind({})
 Square.args = {
   count: 1,
-  children: <UserIcon />,
   badgeColor: 'danger',
-  shape: 'square',
+  children: (
+    <Avatar type="filled" shape="rounded" color="purple" shadow={false} />
+  ),
+  offsetX: 9,
+  offsetY: 7,
 }
 
 export const Dot = BadgeTemplate.bind({})
 Dot.args = {
-  children: <UserIcon />,
   badgeColor: 'green',
-  shape: 'rounded',
+  children: (
+    <Avatar type="filled" shape="rounded" color="purple" shadow={false} />
+  ),
+  offsetX: 2,
+  offsetY: 6,
 }
 
 export const BadgePlacement = BadgeTemplate.bind({})
 BadgePlacement.args = {
-  children: <UserIcon />,
   badgeColor: 'green',
   badgePlacement: 'top-left',
-  shape: 'square',
+  children: (
+    <Avatar type="filled" shape="rounded" color="purple" shadow={false} />
+  ),
+  offsetX: 7,
+  offsetY: 7,
 }
 
 export const CountLimit = BadgeTemplate.bind({})
 CountLimit.args = {
   count: 999,
   badgeColor: 'danger',
-  children: <UserIcon />,
-  shape: 'rounded',
+  children: (
+    <Avatar type="filled" shape="rounded" color="purple" shadow={false} />
+  ),
+  offsetX: 20,
+  offsetY: 7,
 }
 
 export const Icon = BadgeTemplate.bind({})
@@ -48,8 +64,8 @@ Icon.args = {
   count: 1,
   badgeColor: 'danger',
   children: <EmailIcon />,
-  shape: 'rounded',
-  badgeType: 'icon',
+  offsetX: 14,
+  offsetY: 1,
 }
 
 export default {
