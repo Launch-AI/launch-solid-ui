@@ -1,4 +1,4 @@
-import { Component, Show } from 'solid-js'
+import { Component, createMemo, Show } from 'solid-js'
 import type { JSX } from 'solid-js'
 
 import withDefaults from '../../utils/with-defaults'
@@ -33,13 +33,14 @@ export type BadgeProps = {
 }
 
 const Badge: Component<BadgeProps> = (props) => {
-  const limit =
+  const limit = createMemo(() =>
     props.count! > props.countLimit! ? `${props.countLimit}+` : props.count
+  )
 
   return (
     <StyledContainer {...props}>
       <StyledIcon {...props}>
-        <Show when={props.count}>{limit}</Show>
+        <Show when={props.count}>{limit()}</Show>
       </StyledIcon>
       {props.children}
     </StyledContainer>
