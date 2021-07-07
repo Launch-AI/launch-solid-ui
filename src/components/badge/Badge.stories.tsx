@@ -1,6 +1,7 @@
 import { Badge, BadgeProps } from '.'
 import EmailIcon from '../../icons/EmailIcon'
 import { Avatar } from '../avatar'
+import { Button } from '../button'
 
 const BadgeTemplate: Story<BadgeProps> = (args) => <Badge {...args} />
 
@@ -65,6 +66,15 @@ Icon.args = {
   children: <EmailIcon />,
   offsetX: 14,
   offsetY: 1,
+}
+
+export const WithButton = BadgeTemplate.bind({})
+WithButton.args = {
+  count: 1,
+  badgeColor: 'danger',
+  children: <Button variant="primary">Badge</Button>,
+  offsetX: 12,
+  offsetY: 3,
 }
 
 export default {

@@ -1,6 +1,7 @@
 import { Component, Show } from 'solid-js'
 import type { JSX } from 'solid-js'
 
+import withDefaults from '../../utils/with-defaults'
 import StyledContainer from './StyledContainer'
 import StyledIcon from './StyledIcon'
 
@@ -32,8 +33,8 @@ export type BadgeProps = {
 }
 
 const Badge: Component<BadgeProps> = (props) => {
-  let countLimit = props.countLimit || 99
-  const limit = props.count! > countLimit ? `${countLimit}+` : props.count
+  const limit =
+    props.count! > props.countLimit! ? `${props.countLimit}+` : props.count
 
   return (
     <StyledContainer {...props}>
@@ -45,4 +46,6 @@ const Badge: Component<BadgeProps> = (props) => {
   )
 }
 
-export default Badge
+export default withDefaults(Badge, {
+  countLimit: 99,
+})
