@@ -13,7 +13,7 @@ export type AvatarStyledProps = {
   characters?: string
 }
 
-const baseStyles = tw`w-20 h-20 flex justify-center items-center border-0 border-solid border-transparent text-white rounded-full text-base shadow-none`
+const baseStyles = tw`w-12 h-12 flex justify-center items-center border-0 border-solid border-transparent text-white rounded-full text-base shadow-none`
 
 const backgroundStyles = ({ color, type }: AvatarStyledProps) => [
   color === 'default' && tw`bg-light-100`,
