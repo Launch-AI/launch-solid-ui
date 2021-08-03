@@ -11,6 +11,7 @@ export type InputProps = {
   labelFloat?: boolean
   onFocus?: (e: Event) => void
   onBlur?: (e: Event) => void
+  block?: boolean
 }
 
 const Input: Component<InputProps> = (props) => {

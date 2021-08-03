@@ -10,9 +10,12 @@ const baseStyles = tw`border-2 w-full border-grey-light rounded-xl h-12 focus:ou
 
 const filledStyle = (props: InputProps) => [props.filled && tw`bg-light-300`]
 
+const blockStyle = (props: InputProps) => [props.block === false && tw`w-auto`]
+
 const StyledInput = styled('input')<InputProps & StyledInputProps>(
   baseStyles,
-  filledStyle
+  filledStyle,
+  blockStyle
 )
 
 export default StyledInput

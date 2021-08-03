@@ -25,6 +25,13 @@ WithFloatLabel.args = {
   labelFloat: true,
 }
 
+export const Block = InputTemplate.bind({})
+Block.args = {
+  label: 'Label',
+  labelFloat: true,
+  block: false,
+}
+
 export default {
   title: 'Input',
   component: Input,

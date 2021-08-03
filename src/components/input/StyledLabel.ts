@@ -7,7 +7,7 @@ type StyledLabelProps = {
   focused?: boolean
 }
 
-const baseStyles = tw`block text-base text-dark-100 ml-3 mb-1 transition-all`
+const baseStyles = tw`block text-base text-dark-100 ml-3 mb-1 transition-all pointer-events-none`
 
 const floatLabelStyle = (props: InputProps & StyledLabelProps) => [
   props.labelFloat && [tw`absolute inline-block`, { 'line-height': '48px' }],
