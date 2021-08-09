@@ -24,7 +24,10 @@ const Input: Component<InputProps> = (props) => {
   }
   const handleBlur = (e: Event) => {
     props.onBlur && props.onBlur(e)
-    setIsFocused(false)
+    const target = e.target as HTMLInputElement
+    if (!target?.value) {
+      setIsFocused(false)
+    }
   }
 
   return (
