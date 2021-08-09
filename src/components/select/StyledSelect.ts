@@ -24,7 +24,7 @@ const selectInputStyles = (props: StyledSelectProps) => [
 const selectedDropdownStyles = [
   {
     '.select--dropdown': [
-      tw`absolute bg-white w-full border py-1 z-10`,
+      tw`absolute bg-white w-full max-h-80 overflow-y-auto border py-1 z-10`,
       {
         top: '108%',
         'box-shadow':
