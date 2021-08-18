@@ -2,7 +2,7 @@
   "name": "@launch/solid",
   "author": "Launch AI Team",
   "description": "A high performance UI library for Solid JS - based on the Launch Design principles.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "module": "dist/index.js",
   "types": "dist/types.d.ts",
